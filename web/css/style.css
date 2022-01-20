@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+img{
+    width: 50%;
+}
+.navlink{
+    display: flex;
+    flex-direction: row;
+}
+header{
+    position:sticky;
+    top: 0px;
+    width: 100%;
+    height: auto;
+}
+.container{
+    padding: 100%;
+    width: 100%;
+    background-image: url(../img/sieu-xe-la-gi-muaxegiatot-vn.jpg);
+}
