@@ -99,7 +99,7 @@ table.table td .add {
 width: 140px;
 border-radius: 20px;
 }
-#editBook{
+#editProduct{
     width: 750px;
 }
 .modal-content{
@@ -146,6 +146,7 @@ header{
     <!-- Page Content -->
      
     <div class="container">
+
         <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
@@ -156,8 +157,9 @@ header{
                         </div>
                     </div>
                 </div>
-            </div>
-<div id="editBook">
+        </div>
+           
+<div id="editProduct">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="edit" method="post">
@@ -245,8 +247,8 @@ header{
                 </div>
             </div>
         </div>
-    </div>
     
+    </div>
     
 
     
@@ -262,11 +264,11 @@ header{
 
 
     <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
+      cleared[0] = cleared[1] = cleared[2] = 0; 
+      function clearField(t){                   
+      if(! cleared[t.id]){                      
+          cleared[t.id] = 1;  
+          t.value='';         
           t.style.color='#fff';
           }
       }
