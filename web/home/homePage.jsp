@@ -29,7 +29,7 @@
      <jsp:include page="navbar.jsp"></jsp:include>
      <!-- class container chua tat ca cac phan chinh -->
   <div class="container">
-    sadf
+    
   </div>
   <!-- script cua boostrap -->
     <script
