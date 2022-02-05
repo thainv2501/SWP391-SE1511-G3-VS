@@ -1,8 +1,4 @@
-<%-- 
-    Document   : Edit
-    Created on : Jul 10, 2021, 12:21:39 AM
-    Author     : Acer
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">

@@ -1,8 +1,4 @@
-<%-- 
-    Document   : ManageProduct
-    Created on : Jul 9, 2021, 12:56:23 AM
-    Author     : Acer
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
