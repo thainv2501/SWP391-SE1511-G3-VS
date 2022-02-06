@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ManageAccount
-    Created on : Feb 6, 2022, 10:18:59 PM
+    Document   : ManageReport
+    Created on : Feb 7, 2022, 12:20:46 AM
     Author     : nqt26
 --%>
 
@@ -144,6 +144,7 @@ header{
     top: 0px;
     width: 100%;
     height: auto;
+
 }
 header img{
     width: 50%;
@@ -166,6 +167,9 @@ header img{
 body {
   
    * { box-sizing: border-box; }
+}
+.list {
+    
 }
     </style>
 </head> 
@@ -194,11 +198,12 @@ body {
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Tài khoản</th>
-                        <th>Vai trò</th>
-                        <th>Tên</th>
-                        <th>Trạng thái</th>
-                        <th>Mục điều chỉnh</th>
+                        <th>ID báo cáo</th>
+                        <th>ID người mua</th>
+                        <th>ID người bán</th>
+                        <th>Ngày tạo</th>
+                        <th>Loại báo cáo</th>
+                        <th>Nội dung</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -210,12 +215,12 @@ body {
                         <td>${o}</td>
                         <td>${o}</td>
                         <td>                          
-                            <img src="${o}">
+                            ${o}
                         </td>
                         <td>                          
                             ${o}
                         </td>
-                       
+                        <td></td>
                     </tr>
                     </c:forEach>
                 </tbody>
@@ -230,3 +235,4 @@ body {
 
 </body>
 </html>
+
