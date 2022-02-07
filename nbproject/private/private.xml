@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Project%20se1513/SWP391-SE1511-G3-VS/web/Register.jsp</file>
             <file>file:/D:/Project%20se1513/SWP391-SE1511-G3-VS/web/Login.jsp</file>
+=======
+            <file>file:/D:/Git/SWP391-SE1511-G3-VS/web/ManageAccount.jsp</file>
+>>>>>>> 4577f76cc07934e12cd41da7f187ad8ae0a06a4b
         </group>
     </open-files>
 </project-private>

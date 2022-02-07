@@ -1,9 +1,8 @@
 <%-- 
-    Document   : ManageAccount
-    Created on : Feb 6, 2022, 10:18:59 PM
+    Document   : ManageTransaction
+    Created on : Feb 7, 2022, 12:10:19 AM
     Author     : nqt26
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 <!DOCTYPE html>
@@ -144,6 +143,7 @@ header{
     top: 0px;
     width: 100%;
     height: auto;
+
 }
 header img{
     width: 50%;
@@ -166,6 +166,9 @@ header img{
 body {
   
    * { box-sizing: border-box; }
+}
+.list {
+    
 }
     </style>
 </head> 
@@ -194,10 +197,10 @@ body {
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Tài khoản</th>
-                        <th>Vai trò</th>
-                        <th>Tên</th>
-                        <th>Trạng thái</th>
+                        <th>ID hóa đơn</th>
+                        <th>ID người bán</th>
+                        <th>ID người mua</th>
+                        <th>Ngày tạo</th>
                         <th>Mục điều chỉnh</th>
                     </tr>
                 </thead>
@@ -210,7 +213,7 @@ body {
                         <td>${o}</td>
                         <td>${o}</td>
                         <td>                          
-                            <img src="${o}">
+                            ${o}
                         </td>
                         <td>                          
                             ${o}
