@@ -4,9 +4,17 @@
         <servlet-name>homePage</servlet-name>
         <servlet-class>controller.homePage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>productList</servlet-name>
+        <servlet-class>controller.productList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>productList</servlet-name>
+        <url-pattern>/productList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -7,7 +7,6 @@ package controller;
 
 import dao.DAO;
 import entity.Product;
-import entity.vehicleType;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Vector;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author taola
  */
-public class homePage extends HttpServlet {
+public class productList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class homePage extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet homePage</title>");            
+            out.println("<title>Servlet productList</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet homePage at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet productList at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,14 +61,14 @@ public class homePage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        //request.getRequestDispatcher("home/homePage.jsp").forward(request, response);
+        int vtid = Integer.parseInt(request.getParameter("vtid"));
+        String vtName = request.getParameter("vtname");
         HttpSession ses = request.getSession();
         DAO dao = new DAO();
-        Vector<Product> allProduct = (Vector) dao.getAllProducts();
-        Vector<vehicleType> allVehicleType = (Vector) dao.getAllVehicleType();
-        ses.setAttribute("allVehicleType", allVehicleType);
-        ses.setAttribute("allProduct", allProduct);
-        request.getRequestDispatcher("homePage.jsp").forward(request, response);
+        Vector<Product> allProductByTypeId = (Vector) dao.getAllProductsByVehicleTypeId(vtid);
+        ses.setAttribute("allProductByVehicleTypeId", allProductByTypeId);
+        ses.setAttribute("vtName", vtName);
+        request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 
     /**

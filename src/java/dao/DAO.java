@@ -7,6 +7,7 @@ package dao;
 
 import dal.DBContext;
 import entity.Product;
+import entity.vehicleType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,16 +37,85 @@ public class DAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 vec.add(new Product(rs.getInt(1),
-                        rs.getString(2),
+                        rs.getInt(2),
                         rs.getInt(3),
                         rs.getString(4),
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getInt(8),
-                        rs.getFloat(9),
+                        rs.getString(8),
+                        rs.getInt(9),
                         rs.getFloat(10),
-                        rs.getInt(11)
+                        rs.getFloat(11),
+                        rs.getInt(12)
+                )
+                );
+            }
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
+        return vec;
+    }
+    
+    public Vector<vehicleType> getAllVehicleType() {
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        Vector vec = new Vector();
+        try {
+
+            con = new DBContext().connection;
+            try {
+                System.out.println("Ket noi Thanh cong");
+            } catch (Exception e) {
+                System.out.println("Co loi khi ket noi " + e.getMessage());
+            }
+            String sql = "select * from vehicleType";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                vec.add(new vehicleType(rs.getInt(1),
+                        rs.getString(2)
+                )
+                );
+            }
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
+        return vec;
+    }
+    
+    public Vector<Product> getAllProductsByVehicleTypeId(int vtid) {
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+        Vector vec = new Vector();
+        try {
+
+            con = new DBContext().connection;
+            try {
+                System.out.println("Ket noi Thanh cong");
+            } catch (Exception e) {
+                System.out.println("Co loi khi ket noi " + e.getMessage());
+            }
+            String sql = "SELECT * from Product"
+                    + " where vehicleTypeId = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, vtid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                vec.add(new Product(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getFloat(10),
+                        rs.getFloat(11),
+                        rs.getInt(12)
                 )
                 );
             }
@@ -57,9 +127,13 @@ public class DAO {
 
     public static void main(String[] args) {
         DAO dao = new DAO();
-        Vector<Product> p = dao.getAllProducts();
-        for (Product product : p) {
-            System.out.println(product);
+//        Vector<Product> p = dao.getAllProductsByVehicleTypeId(1);
+//        for (Product product : p) {
+//            System.out.println(product);
+//        }
+ Vector<vehicleType> vecV  = dao.getAllVehicleType();
+        for (vehicleType type : vecV) {
+            System.out.println(type);
         }
     }
 }

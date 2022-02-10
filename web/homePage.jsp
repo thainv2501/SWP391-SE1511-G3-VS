@@ -72,9 +72,9 @@
           <div class="row">
            
               <div class="col-sm-6 col-md-3 ">
-                <div class="box brand bg-dark d-flex flex-column text-light p-4 h-100">
+                <div class="box rounded brand bg-dark d-flex flex-column text-light p-4 h-100">
                   <div class="card-img">
-                    <img class="product-img" src="img/download.png" alt="">
+                    <img class="rounded product-img" src="img/download.png" alt="">
                   </div>
                   <h2 class="text-center mt-auto">Ferari</h2>             
                   <div class="mt-auto text-end">
@@ -171,7 +171,7 @@
     </div>
   </div>
   <div class="text-end">
-    <button type="button" class="btn btn-outline-secondary m-3"> <a href="#"></a>See more >></i></button>
+      <button type="button" class="btn btn-outline-secondary m-3"> <a class="btn btn-secondary" href="productList?vtid=1&&vtname=Car">See more >></a></button>
     
   </div>
 </div>

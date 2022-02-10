@@ -11,8 +11,9 @@ package entity;
  */
 public class Product {
     private int id;
-    private String name;
     private int brandId;
+    private int vehicleTypeId;
+    private String name;
     private String madeIn;
     private String ManufactureYear;
     private String descript;
@@ -25,10 +26,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, int brandId, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId) {
+    public Product(int id, int brandId, int vehicleTypeId, String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId) {
         this.id = id;
         this.name = name;
         this.brandId = brandId;
+        this.vehicleTypeId = vehicleTypeId;
         this.madeIn = madeIn;
         this.ManufactureYear = ManufactureYear;
         this.descript = descript;
@@ -61,6 +63,14 @@ public class Product {
 
     public void setBrandId(int brandId) {
         this.brandId = brandId;
+    }
+
+    public int getVehicleTypeId() {
+        return vehicleTypeId;
+    }
+
+    public void setVehicleTypeId(int vehicleTypeId) {
+        this.vehicleTypeId = vehicleTypeId;
     }
 
     public String getMadeIn() {
@@ -129,9 +139,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", brandId=" + brandId + ", madeIn=" + madeIn + ", ManufactureYear=" + ManufactureYear + ", descript=" + descript + ", img=" + img + ", quatity=" + quatity + ", price=" + price + ", discount=" + discount + ", sellerId=" + sellerId + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", brandId=" + brandId + ", vehicleTypeId=" + vehicleTypeId + ", madeIn=" + madeIn + ", ManufactureYear=" + ManufactureYear + ", descript=" + descript + ", img=" + img + ", quatity=" + quatity + ", price=" + price + ", discount=" + discount + ", sellerId=" + sellerId + '}';
     }
-    
+
     
     
 }
