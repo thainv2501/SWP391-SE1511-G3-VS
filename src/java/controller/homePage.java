@@ -5,12 +5,16 @@
  */
 package controller;
 
+import dao.DAO;
+import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -57,7 +61,12 @@ public class homePage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        request.getRequestDispatcher("home/homePage.jsp").forward(request, response);
+        //request.getRequestDispatcher("home/homePage.jsp").forward(request, response);
+        HttpSession ses = request.getSession();
+        DAO dao = new DAO();
+        Vector<Product> allProduct = (Vector) dao.getAllProducts();
+        ses.setAttribute("allProduct", allProduct);
+        request.getRequestDispatcher("homePage.jsp").forward(request, response);
     }
 
     /**

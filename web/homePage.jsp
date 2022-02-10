@@ -65,7 +65,7 @@
       <!-- end slide show container -->
       <!-- brand --> 
       <!-- dang can sua them -->
-      <div class="newest-car-product bg-light text-dark">
+      <div class=" bg-light text-dark">
         <h3 class="bg-secondery text-center pt-4">Brand</h3>
         <br>
         <div class="p-5">
@@ -144,14 +144,19 @@
 <br>
 <div class="p-5">
   <div class="row gy-5">
+  <c:forEach items="${allProduct}" var="p">
     <div class="col-sm-12 col-md-6 col-lg-4">
-      <div class="box product bg-dark d-flex flex-column text-light p-4 h-100">
-        <div class="card-img">
-          <img class="product-img" src="img/logo/onlinelogomaker-011922-2055-7830.png" alt="">
-        </div>             
-        <p class="discount-text">discount</p>
-          <p class="descript">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam iste earum veritatis ab aut, exercitationem unde quia eaque harum dolorum qui vel quisquam excepturi accusantium adipisci officia perferendis maxime officiis?</p>
-       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, debitis minima. Velit quis laboriosam soluta hic quasi dignissimos sapiente et magni. Rem, et? Accusamus dolores, nesciunt atque labore quia facere!</p>
+      <div class="box rounded product bg-dark d-flex flex-column text-light p-4 h-100">
+        <section class="card-img">
+          <section class="text-end"><span class="vehicle__badge vehicle__badge--special">Special Value</span></section>
+          
+          <img class="product-img" src="${p.img}" alt="">
+        </section>             
+        <section class="vehicle-header">
+          <h2 class="product-tiltle">${p.name}</h2>
+          <h2 class="product-price"> ${p.price}$</h3>
+
+        </section>
         <div class="mt-auto">
         <button type="button" class="btn btn-outline-secondary m-2"> <a href="#"></a>See more >> </button>
       <button type="button" class="btn btn-outline-secondary"> <a href="#"></a><i class="bi bi-cart-plus-fill"></i></button>
@@ -159,6 +164,7 @@
 
   </div>
 123</div>
+          </c:forEach>
    
     
       
