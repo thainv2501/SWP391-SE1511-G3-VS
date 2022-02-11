@@ -8,6 +8,10 @@
         <servlet-name>productList</servlet-name>
         <servlet-class>controller.productList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <servlet-class>controller.search</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>productList</servlet-name>
         <url-pattern>/productList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

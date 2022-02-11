@@ -31,9 +31,9 @@
             <div class="row w-100">
                 <div class="col search sort  ">
                     <p class="m-2 border-bottom text-center">Search and filter </p>
-                    <form action="">
+                    <form action="search" method="post">
                         <div class="input-group mb-3 ">
-                            <input type="text" class="form-control" placeholder="Key word" >
+                            <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" >
                             <button class="btn btn-outline-secondary" type="submit" >Search</button>
                         </div>
                     </form>
@@ -62,7 +62,7 @@
                 <br>
                 <div class="p-5">
                     <div class="row gy-5">
-                        <c:forEach items="${allProductByVehicleTypeId}" var="p">
+                        <c:forEach items="${availableProduct}" var="p">
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="box rounded product bg-dark d-flex flex-column text-light p-4 h-100">
                                     <section class="card-img">

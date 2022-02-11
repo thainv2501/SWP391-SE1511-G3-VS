@@ -18,7 +18,7 @@ import java.util.Vector;
  * @author taola
  */
 public class DAO {
-
+//get all product from database
     public Vector<Product> getAllProducts() {
         Connection con;
         PreparedStatement ps;
@@ -56,7 +56,7 @@ public class DAO {
         }
         return vec;
     }
-    
+    // get all vehicle type
     public Vector<vehicleType> getAllVehicleType() {
         Connection con;
         PreparedStatement ps;
@@ -84,7 +84,7 @@ public class DAO {
         }
         return vec;
     }
-    
+    // get all product by vehicle type id
     public Vector<Product> getAllProductsByVehicleTypeId(int vtid) {
         Connection con;
         PreparedStatement ps;

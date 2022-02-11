@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author taola
  */
-public class productList extends HttpServlet {
+public class search extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +39,10 @@ public class productList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet productList</title>");            
+            out.println("<title>Servlet search</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet productList at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet search at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,15 +61,6 @@ public class productList extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        int vtid = Integer.parseInt(request.getParameter("vtid"));
-        String vtName = request.getParameter("vtname");
-        HttpSession ses = request.getSession();
-        DAO dao = new DAO();
-        Vector<Product> allProductByTypeId = (Vector) dao.getAllProductsByVehicleTypeId(vtid);
-        ses.setAttribute("allProductByVehicleTypeId", allProductByTypeId);
-        ses.setAttribute("availableProduct", allProductByTypeId);
-        ses.setAttribute("vtName", vtName);
-        request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 
     /**
@@ -83,7 +74,19 @@ public class productList extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String keyWord = request.getParameter("keyWord");
+        HttpSession ses = request.getSession();
+        DAO dao = new DAO();
+        Vector<Product> allProductByTypeId =  (Vector<Product>) ses.getAttribute("allProduct");
+        Vector<Product> allProductByKeyWord = new Vector<>();
+        for (Product product : allProductByTypeId) {
+            if (product.getName().toLowerCase().contains(keyWord.toLowerCase())) {
+                allProductByKeyWord.add(product);
+            }
+        }
+        ses.setAttribute("availableProduct", allProductByKeyWord);
+        request.getRequestDispatcher("productList.jsp").forward(request, response);
     }
 
     /**
