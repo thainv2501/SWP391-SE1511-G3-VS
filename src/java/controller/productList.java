@@ -69,7 +69,7 @@ public class productList extends HttpServlet {
         ses.setAttribute("allProductByVehicleTypeId", allProductByTypeId);
         ses.setAttribute("availableProduct", allProductByTypeId);
         ses.setAttribute("vtName", vtName);
-        request.getRequestDispatcher("productList.jsp").forward(request, response);
+        request.getRequestDispatcher("view/productList.jsp").forward(request, response);
     }
 
     /**

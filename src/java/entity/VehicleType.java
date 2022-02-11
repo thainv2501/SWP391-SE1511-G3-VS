@@ -9,14 +9,14 @@ package entity;
  *
  * @author taola
  */
-public class vehicleType {
+public class VehicleType {
     private int vehicleTypeId;
     private String vehicleTypeName;
 
-    public vehicleType() {
+    public VehicleType() {
     }
 
-    public vehicleType(int vehicleTypeId, String vehicleTypeName) {
+    public VehicleType(int vehicleTypeId, String vehicleTypeName) {
         this.vehicleTypeId = vehicleTypeId;
         this.vehicleTypeName = vehicleTypeName;
     }

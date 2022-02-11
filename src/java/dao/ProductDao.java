@@ -7,7 +7,7 @@ package dao;
 
 import dal.DBContext;
 import entity.Product;
-import entity.VehicleType;
+import iDao.IProductDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,9 +16,12 @@ import java.util.Vector;
 /**
  *
  * @author taola
+ * @version 
+ * load product data from database
  */
-public class DAO {
-//get all product from database
+public class ProductDao implements IProductDao{
+    //get all product from database
+    @Override
     public Vector<Product> getAllProducts() {
         Connection con;
         PreparedStatement ps;
@@ -56,35 +59,8 @@ public class DAO {
         }
         return vec;
     }
-    // get all vehicle type
-    public Vector<VehicleType> getAllVehicleType() {
-        Connection con;
-        PreparedStatement ps;
-        ResultSet rs;
-        Vector vec = new Vector();
-        try {
-
-            con = new DBContext().connection;
-            try {
-                System.out.println("Ket noi Thanh cong");
-            } catch (Exception e) {
-                System.out.println("Co loi khi ket noi " + e.getMessage());
-            }
-            String sql = "select * from vehicleType";
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                vec.add(new VehicleType(rs.getInt(1),
-                        rs.getString(2)
-                )
-                );
-            }
-        } catch (Exception ex) {
-            System.out.println("Error");
-        }
-        return vec;
-    }
-    // get all product by vehicle type id
+    
+    @Override
     public Vector<Product> getAllProductsByVehicleTypeId(int vtid) {
         Connection con;
         PreparedStatement ps;
@@ -124,16 +100,6 @@ public class DAO {
         }
         return vec;
     }
-
-    public static void main(String[] args) {
-        DAO dao = new DAO();
-//        Vector<Product> p = dao.getAllProductsByVehicleTypeId(1);
-//        for (Product product : p) {
-//            System.out.println(product);
-//        }
-// Vector<vehicleType> vecV  = dao.getAllVehicleType();
-//        for (VehicleType type : vecV) {
-//            System.out.println(type);
-//        }
-    }
+    
+    
 }

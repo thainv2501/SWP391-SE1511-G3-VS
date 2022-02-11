@@ -86,7 +86,7 @@ public class search extends HttpServlet {
             }
         }
         ses.setAttribute("availableProduct", allProductByKeyWord);
-        request.getRequestDispatcher("productList.jsp").forward(request, response);
+        request.getRequestDispatcher("view/productList.jsp").forward(request, response);
     }
 
     /**
