@@ -6,8 +6,11 @@
 package controller;
 
 import dao.DAO;
+import dao.ProductDao;
+import dao.VehicleTypeDao;
 import entity.Product;
 import entity.VehicleType;
+import iDao.IProductDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Vector;
@@ -64,9 +67,10 @@ public class homePage extends HttpServlet {
         //processRequest(request, response);
         //request.getRequestDispatcher("home/homePage.jsp").forward(request, response);
         HttpSession ses = request.getSession();
-        DAO dao = new DAO();
-        Vector<Product> allProduct = (Vector) dao.getAllProducts();
-        Vector<VehicleType> allVehicleType = (Vector) dao.getAllVehicleType();
+        IProductDao productDao = new ProductDao();
+        VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
+        Vector<Product> allProduct = (Vector) productDao.getAllProducts();
+        Vector<VehicleType> allVehicleType = (Vector) vehicleTypeDao.getAllVehicleType();
         ses.setAttribute("allVehicleType", allVehicleType);
         ses.setAttribute("allProduct", allProduct);
         request.getRequestDispatcher("view/homePage.jsp").forward(request, response);

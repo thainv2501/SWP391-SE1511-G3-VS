@@ -6,6 +6,7 @@
 package controller;
 
 import dao.DAO;
+import dao.ProductDao;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -64,8 +65,8 @@ public class productList extends HttpServlet {
         int vtid = Integer.parseInt(request.getParameter("vtid"));
         String vtName = request.getParameter("vtname");
         HttpSession ses = request.getSession();
-        DAO dao = new DAO();
-        Vector<Product> allProductByTypeId = (Vector) dao.getAllProductsByVehicleTypeId(vtid);
+        ProductDao productDao = new ProductDao();
+        Vector<Product> allProductByTypeId = (Vector) productDao.getAllProductsByVehicleTypeId(vtid);
         ses.setAttribute("allProductByVehicleTypeId", allProductByTypeId);
         ses.setAttribute("availableProduct", allProductByTypeId);
         ses.setAttribute("vtName", vtName);

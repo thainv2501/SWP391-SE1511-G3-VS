@@ -77,8 +77,7 @@ public class search extends HttpServlet {
         //processRequest(request, response);
         String keyWord = request.getParameter("keyWord");
         HttpSession ses = request.getSession();
-        DAO dao = new DAO();
-        Vector<Product> allProductByTypeId =  (Vector<Product>) ses.getAttribute("allProduct");
+        Vector<Product> allProductByTypeId =  (Vector<Product>) ses.getAttribute("allProductByVehicleTypeId");
         Vector<Product> allProductByKeyWord = new Vector<>();
         for (Product product : allProductByTypeId) {
             if (product.getName().toLowerCase().contains(keyWord.toLowerCase())) {
