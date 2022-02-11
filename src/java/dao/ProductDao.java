@@ -5,9 +5,9 @@
  */
 package dao;
 
-import dal.DBContext;
+import context.DBContext;
 import entity.Product;
-import iDao.IProductDao;
+import dao.impl.IProductDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import java.util.Vector;
  * @version 
  * load product data from database
  */
-public class ProductDao implements IProductDao{
+public class ProductDao extends DBContext implements IProductDao{
     //get all product from database
     @Override
     public Vector<Product> getAllProducts() {
@@ -29,7 +29,7 @@ public class ProductDao implements IProductDao{
         Vector vec = new Vector();
         try {
 
-            con = new DBContext().connection;
+            con = connection;
             try {
                 System.out.println("Ket noi Thanh cong");
             } catch (Exception e) {
@@ -68,7 +68,7 @@ public class ProductDao implements IProductDao{
         Vector vec = new Vector();
         try {
 
-            con = new DBContext().connection;
+            con = connection;
             try {
                 System.out.println("Ket noi Thanh cong");
             } catch (Exception e) {

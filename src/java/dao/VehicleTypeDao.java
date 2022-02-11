@@ -5,9 +5,9 @@
  */
 package dao;
 
-import dal.DBContext;
+import context.DBContext;
 import entity.VehicleType;
-import iDao.IVehicleTypeDao;
+import dao.impl.IVehicleTypeDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +19,7 @@ import java.util.Vector;
  * @version 
  * load data vehicle type from data
  */
-public class VehicleTypeDao implements IVehicleTypeDao{
+public class VehicleTypeDao extends DBContext implements IVehicleTypeDao{
     @Override
     public Vector<VehicleType> getAllVehicleType() {
         Connection con;
@@ -28,7 +28,7 @@ public class VehicleTypeDao implements IVehicleTypeDao{
         Vector vec = new Vector();
         try {
 
-            con = new DBContext().connection;
+            con = connection;
             try {
                 System.out.println("Ket noi Thanh cong");
             } catch (Exception e) {

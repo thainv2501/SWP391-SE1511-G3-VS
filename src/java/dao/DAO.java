@@ -5,7 +5,7 @@
  */
 package dao;
 
-import dal.DBContext;
+import context.DBContext;
 import entity.Product;
 import entity.VehicleType;
 import java.sql.Connection;

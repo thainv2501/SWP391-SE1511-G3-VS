@@ -10,7 +10,7 @@ import dao.ProductDao;
 import dao.VehicleTypeDao;
 import entity.Product;
 import entity.VehicleType;
-import iDao.IProductDao;
+import dao.impl.IProductDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Vector;
