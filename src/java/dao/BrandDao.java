@@ -8,7 +8,6 @@ package dao;
 import context.DBContext;
 import dao.impl.IBrandDao;
 import entity.Brand;
-import entity.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
