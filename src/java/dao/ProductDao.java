@@ -35,7 +35,8 @@ public class ProductDao extends DBContext implements IProductDao{
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "SELECT * from Product";
+            String sql = "SELECT * from Product"
+                    + " order by ManufactureYear desc ";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {

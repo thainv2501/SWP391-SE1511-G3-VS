@@ -4,16 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/entity/Product.java</file>
-            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/homePage.jsp</file>
-            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/entity/vehicleType.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/impl/IVehicleTypeDao.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/view/productList.jsp</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/controller/search.java</file>
-            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/DAO.java</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/controller/productList.java</file>
-            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/navbar.jsp</file>
-            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dal/DBContext.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/view/navbar.jsp</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/css/style.css</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/impl/IProductDao.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/context/DBContext.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/DAO.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/VehicleTypeDao.java</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/view/homePage.jsp</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/ProductDao.java</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/controller/homePage.java</file>
-            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/productList.jsp</file>
+            <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/entity/VehicleType.java</file>
         </group>
     </open-files>
 </project-private>

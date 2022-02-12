@@ -6,8 +6,9 @@
 package dao;
 
 import context.DBContext;
-import entity.VehicleType;
-import dao.impl.IVehicleTypeDao;
+import dao.impl.IBrandDao;
+import entity.Brand;
+import entity.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +17,10 @@ import java.util.Vector;
 /**
  *
  * @author taola
- * @version 
- * load data vehicle type from data
  */
-public class VehicleTypeDao extends DBContext implements IVehicleTypeDao{
-    @Override
-    public Vector<VehicleType> getAllVehicleType() {
+public class BrandDao extends DBContext implements IBrandDao {
+
+    public Vector<Brand> getAllBrand() {
         Connection con;
         PreparedStatement ps;
         ResultSet rs;
@@ -34,12 +33,14 @@ public class VehicleTypeDao extends DBContext implements IVehicleTypeDao{
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "select * from vehicleType";
+            String sql = "SELECT *\n"
+                    + "  FROM [VehicalShop].[dbo].[Brand]";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                vec.add(new VehicleType(rs.getInt(1),
-                        rs.getString(2)
+                vec.add(new Brand(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3)
                 )
                 );
             }
@@ -50,10 +51,10 @@ public class VehicleTypeDao extends DBContext implements IVehicleTypeDao{
     }
     
     public static void main(String[] args) {
-        VehicleTypeDao dao = new VehicleTypeDao();
-        Vector<VehicleType> vec = dao.getAllVehicleType();
-        for (VehicleType vehicleType : vec) {
-            System.out.println(vehicleType);
+        BrandDao dao = new BrandDao();
+        Vector<Brand> vec = dao.getAllBrand();
+        for (Brand brand : vec) {
+            System.out.println(brand);
         }
     }
 }

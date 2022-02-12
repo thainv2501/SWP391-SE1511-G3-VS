@@ -5,7 +5,6 @@
  */
 package controller;
 
-import dao.DAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
