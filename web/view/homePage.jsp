@@ -102,7 +102,7 @@
                 <br>
                 <div class="p-5">
                     <div class="row gy-5">
-                        <c:forEach items="${allProduct}" var="p" begin="0" end="8">
+                        <c:forEach items="${allCar}" var="p" begin="0" end="8" >
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="box rounded product bg-dark d-flex flex-column text-light p-4 h-100">
                                     <section class="card-img">
@@ -123,25 +123,24 @@
                                 </div>
                                 123</div>
                             </c:forEach>
+                        
 
 
 
                     </div>
                 </div>
                 <div class="text-end">
-                    <button type="button" class="btn" > <a class="btn btn-outline-secondary m-3" href="productList?vtid=1&&vtname=Car">See more >></a></button>
+                    <button type="button" class="btn" > <a class="btn btn-outline-secondary  m-3" href="productList?vtid=1&&vtname=Car">See more >></a></button>
 
                 </div>
             </div>
-            <!-- end newest oto product -->
-
-            <!-- start newest moto -->
-            <div class="newest-moto-product bg-secondary text-light">
-                <h3 class=" text-center text-dark pt-5">Newest Moto Product</h3>
+            <!-- end newest Car product -->
+             <div class="newest-car-product bg-dark text-light">
+                <h3 class="bg-secondery text-center pt-4">Newest Car Product</h3>
                 <br>
                 <div class="p-5">
                     <div class="row gy-5">
-                        <c:forEach items="${allProduct}" var="p" begin="0" end="8">
+                    <c:forEach items="${allMoto}" var="p" begin="0" end="8" >
                             <div class="col-sm-12 col-md-6 col-lg-4">
                                 <div class="box rounded product bg-dark d-flex flex-column text-light p-4 h-100">
                                     <section class="card-img">
@@ -162,19 +161,19 @@
                                 </div>
                                 123</div>
                             </c:forEach>
-
+                        
 
 
 
                     </div>
                 </div>
                 <div class="text-end">
-                    <button type="button" class="btn" > <a class="btn btn-outline-dark m-3" href="productList?vtid=2&&vtname=Moto">See more >></a></button>
+                    <button type="button" class="btn" > <a class="btn btn-outline-secondary  m-3" href="productList?vtid=2&&vtname=Moto">See more >></a></button>
 
                 </div>
             </div>
+            <!-- end newest Moto product -->
 
-            <!-- end newest moto -->
         </div>
         <!-- end container part -->
         <!-- footer  -->

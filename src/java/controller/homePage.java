@@ -44,7 +44,7 @@ public class homePage extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet homePage</title>");            
+            out.println("<title>Servlet homePage</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet homePage at " + request.getContextPath() + "</h1>");
@@ -71,12 +71,16 @@ public class homePage extends HttpServlet {
         IProductDao productDao = new ProductDao();
         VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
         BrandDao brandDao = new BrandDao();
-        Vector<Product> allProduct = (Vector) productDao.getAllProducts();
+        Vector<Product> allCar = (Vector) productDao.getAllProductsByVehicleTypeId(1);
+        Vector<Product> allMoto = (Vector) productDao.getAllProductsByVehicleTypeId(2);
+
         Vector<VehicleType> allVehicleType = (Vector) vehicleTypeDao.getAllVehicleType();
         Vector<Brand> allBrand = brandDao.getAllBrand();
         ses.setAttribute("allBrand", allBrand);
         ses.setAttribute("allVehicleType", allVehicleType);
-        ses.setAttribute("allProduct", allProduct);
+        ses.setAttribute("allCar", allCar);
+        ses.setAttribute("allMoto", allMoto);
+
         request.getRequestDispatcher("view/homePage.jsp").forward(request, response);
     }
 

@@ -76,7 +76,8 @@ public class ProductDao extends DBContext implements IProductDao{
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
             String sql = "SELECT * from Product"
-                    + " where vehicleTypeId = ?";
+                    + " where vehicleTypeId = ? "
+                    + "order by ManufactureYear desc";
             ps = con.prepareStatement(sql);
             ps.setInt(1, vtid);
             rs = ps.executeQuery();
