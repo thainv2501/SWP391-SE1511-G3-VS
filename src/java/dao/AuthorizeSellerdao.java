@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright(C) 2021, group 3 SE1511JS
+ * T.NET:
+ *  Vehicle Store
+ *
+ * Record of change:
+ * DATE            Version             AUTHOR           DESCRIPTION
+ * 2021-02-13      1.0                 TungNQ           Add Method
  */
 package dao;
 
@@ -19,6 +23,7 @@ import dao.impl.IAuthorizeSellerdao;
 
 /**
  * Hiển thị danh sách tài khoản người bán chưa được chấp thuận
+ * Xóa thông tin những tài khoản bị từ chối
  * @author nqt26
  */
 public class AuthorizeSellerdao extends DBContext implements IAuthorizeSellerdao{
@@ -47,7 +52,7 @@ public class AuthorizeSellerdao extends DBContext implements IAuthorizeSellerdao
         } 
         return listSeller;
     }
-
+    // từ chối yêu cầu cấp quyền và xóa thông tin
     @Override
     public void denySellerAccount(String username) {
         Connection con;
