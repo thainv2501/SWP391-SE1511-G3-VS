@@ -17,8 +17,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
+ * Product. Trong các phương thức update or insert của lớp, dữ liệu được chuẩn
+ * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
+ * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
+ * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
  *
- * @author taola
+ * @author Nguyen Viet Thai
+ */
+/**
+ * The class contains method find, update, delete, insert Product information
+ * from Product table in database. In the update or insert method, all data will
+ * be normalized (trim space) before update/insert into database The method wil
+ * throw an object of java.lang.Exception class if there is any error occurring
+ * when finding, inserting, or updating data
+ * <p>
+ * Bugs:
+ *
+ * @author Nguyen Viet Thai
  */
 public class productList extends HttpServlet {
 
@@ -39,7 +55,7 @@ public class productList extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet productList</title>");            
+            out.println("<title>Servlet productList</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet productList at " + request.getContextPath() + "</h1>");
@@ -64,10 +80,21 @@ public class productList extends HttpServlet {
         int vtid = Integer.parseInt(request.getParameter("vtid"));
         String vtName = request.getParameter("vtname");
         HttpSession ses = request.getSession();
-        ProductDao productDao = new ProductDao();
-        Vector<Product> allProductByTypeId = (Vector) productDao.getAllProductsByVehicleTypeId(vtid);
-        ses.setAttribute("allProductByVehicleTypeId", allProductByTypeId);
-        ses.setAttribute("availableProduct", allProductByTypeId);
+        ses.removeAttribute("keyWord");
+//        ProductDao productDao = new ProductDao();
+//        Vector<Product> allProductByTypeId = (Vector) productDao.getAllProductsByVehicleTypeId(vtid);
+//        ses.setAttribute("allProductByVehicleTypeId", allProductByTypeId);
+        if (vtid == 1) {
+            Vector<Product> allCar = (Vector<Product>) ses.getAttribute("allCar");
+            ses.setAttribute("availableProduct", allCar);
+        }
+        if (vtid == 2) {
+            Vector<Product> allMoto = (Vector<Product>) ses.getAttribute("allMoto");
+            ses.setAttribute("availableProduct", allMoto);
+        }
+        
+        //ses.setAttribute("availableProduct", allProductByTypeId);
+        ses.setAttribute("vtid", vtid);
         ses.setAttribute("vtName", vtName);
         request.getRequestDispatcher("view/productList.jsp").forward(request, response);
     }

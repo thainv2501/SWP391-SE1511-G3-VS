@@ -74,15 +74,16 @@ public class search extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String keyWord = request.getParameter("keyWord");
+        String keyWord = request.getParameter("keyWord").trim();
         HttpSession ses = request.getSession();
-        Vector<Product> allProductByTypeId =  (Vector<Product>) ses.getAttribute("allProductByVehicleTypeId");
+        Vector<Product> availableProduct =  (Vector<Product>) ses.getAttribute("availableProduct");
         Vector<Product> allProductByKeyWord = new Vector<>();
-        for (Product product : allProductByTypeId) {
+        for (Product product : availableProduct) {
             if (product.getName().toLowerCase().contains(keyWord.toLowerCase())) {
                 allProductByKeyWord.add(product);
             }
         }
+        ses.setAttribute("keyWord", keyWord);
         ses.setAttribute("availableProduct", allProductByKeyWord);
         request.getRequestDispatcher("view/productList.jsp").forward(request, response);
     }

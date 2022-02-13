@@ -29,38 +29,51 @@
 
             <!-- search sort filter -->
             <div class="row w-100">
-                <div class="col search sort  ">
-                    <p class="m-2 border-bottom text-center">Search and filter </p>
-                    <form action="search" method="post">
-                        <div class="input-group mb-3 ">
-                            <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" >
-                            <button class="btn btn-outline-secondary" type="submit" >Search</button>
-                        </div>
-                    </form>
+                <div class="col search sort filter  ">
+                    <div class="d-flex flex-row">
+                        <button type="button" class="btn col-6 " > <a class="btn btn-outline-secondary w-100 ${vtid==1?"active":""} " href="productList?vtid=1&&vtname=Car">Car</a></button>
+                    <button type="button" class="btn col-6 " > <a class="btn btn-outline-secondary w-100 ${vtid==2?"active":"" } " href="productList?vtid=2&&vtname=Moto">Moto</a></button>     
 
-                    <form action="">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                        <button class="btn btn-outline-secondary w-100" type="submit" >Filter</button>
-                    </form>
-                    <div class="category border border-dark m-2 rounded">
-                        <ul >
-                            <li ><h6 class="dropdown-header border-bottom">Categori</h6></li>
-                            <li class="active"><a class="dropdown-item border-bottom" href="#" >Action</a></li>
-                            <li><a class="dropdown-item border-bottom" href="#">Another action</a></li>
+                </div>
+
+
+
+                <p class="m-2 border-bottom text-center">Search and filter </p>
+                <form action="search" method="post">
+                    <div class="input-group mb-3 ">
+                        <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" value="${keyWord}" >
+                        <button class="btn btn-outline-secondary" type="submit" >Search</button>
+                    </div>
+                </form>
+
+                <form action="">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected value="all">Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <button class="btn btn-outline-secondary w-100" type="submit" >Filter</button>
+                </form>
+                <div class="brand-category border border-dark m-2 rounded">
+                    <ul >
+                        <li ><h6 class="dropdown-header border-bottom">Brand</h6></li>
+                        <li class="active"><a class="dropdown-item border-bottom" href="#" >All</a></li>
+                        <c:forEach items="${allBrand}" var="b"> <li class=""><a class="dropdown-item border-bottom" href="#" >${b.name}</a></li> </c:forEach>
                         </ul>
 
                     </div>
                 </div>
-                <!-- start list moto -->
-                <div class="col-10 newest-moto-product bg-warning text-light">
-                    <h3 class=" text-center text-dark pt-5 border-bottom"> ${vtName} Product</h3>
+                <!-- start list -->
+                <div class="col-10 newest-moto-product bg-dark text-light">
+                    <h3 class=" text-center text-light pt-5 border-bottom"> ${vtName} Product</h3>
                 <br>
                 <div class="p-5">
+                    <c:if test="${empty availableProduct}">
+                        <div class="row gy-5">
+                            <h2>No result</h2>
+                        </div>
+                    </c:if>
                     <div class="row gy-5">
                         <c:forEach items="${availableProduct}" var="p">
                             <div class="col-sm-12 col-md-6 col-lg-4">

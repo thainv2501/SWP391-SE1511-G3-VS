@@ -14,12 +14,27 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 /**
+ * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
+ * VehicleTpye. Trong các phương thức update or insert của lớp, dữ liệu được chuẩn hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
+ * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu
+ * Bugs : 
  *
- * @author taola
- * @version 
- * load data vehicle type from data
+ * @author Nguyen Viet Thai
+ */
+
+
+/**
+ * The class contains method find, update, delete, insert VehicleType information from
+ * VehicleType table in database. In the update or insert method, all data will be normalized (trim space) before update/insert into database
+ * The method wil throw an object  of java.lang.Exception class if there is any error occurring when finding, inserting, or updating data
+ * <p>Bugs: 
+ *
+ * @author Nguyen Viet Thai
  */
 public class VehicleTypeDao extends DBContext implements IVehicleTypeDao{
+    /*
+    take all vehicleType from dâtbase ==>  will return a list of VehicleType contain : vehicleTypeID, cehicleTypeName
+    */
     @Override
     public Vector<VehicleType> getAllVehicleType() {
         Connection con;

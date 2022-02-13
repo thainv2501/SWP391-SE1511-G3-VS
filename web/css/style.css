@@ -169,8 +169,11 @@ footer {
   text-overflow: ellipsis;
   word-break: break-word;
 }
-.category li {
+.brand-category> ul > li {
   list-style: none;
+}
+.brand-category{
+     overflow: auto;
 }
 .vehicle-header {
   display: flex;
@@ -214,6 +217,7 @@ footer {
   border-bottom-left-radius: 10px;
   color: #fff;
 }
+
 
 @-webkit-keyframes fade {
   from {

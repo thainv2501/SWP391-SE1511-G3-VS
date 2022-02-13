@@ -14,13 +14,30 @@ import java.sql.ResultSet;
 import java.util.Vector;
 
 /**
+ * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
+ * Product. Trong các phương thức update or insert của lớp, dữ liệu được chuẩn
+ * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
+ * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
+ * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
  *
- * @author taola
- * @version 
- * load product data from database
+ * @author Nguyen Viet Thai
  */
-public class ProductDao extends DBContext implements IProductDao{
-    //get all product from database
+/**
+ * The class contains method find, update, delete, insert VehicleType
+ * information from Product table in database. In the update or insert method,
+ * all data will be normalized (trim space) before update/insert into database
+ * The method will throw an object of java.lang.Exception class if there is any
+ * error occurring when finding, inserting, or updating data
+ * <p>
+ * Bugs:
+ *
+ * @author Nguyen Viet Thai
+ */
+public class ProductDao extends DBContext implements IProductDao {
+
+    /* get all product from database ==> return a list ò product coitain : int id, int brandId, int vehicleTypeId, 
+    *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
+     */
     @Override
     public Vector<Product> getAllProducts() {
         Connection con;
@@ -60,7 +77,10 @@ public class ProductDao extends DBContext implements IProductDao{
         }
         return vec;
     }
-    
+
+    /* get all product by vehicleType from database ==> return a list of product coitain : int id, int brandId, int vehicleTypeId, 
+    *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
+     */
     @Override
     public Vector<Product> getAllProductsByVehicleTypeId(int vtid) {
         Connection con;
@@ -102,6 +122,5 @@ public class ProductDao extends DBContext implements IProductDao{
         }
         return vec;
     }
-    
-    
+
 }
