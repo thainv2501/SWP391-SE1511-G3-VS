@@ -1,13 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright(C) 2021, group 3 SE1511JS
+ * T.NET:
+ *  Vehicle Store
+ *
+ * Record of change:
+ * DATE            Version             AUTHOR           DESCRIPTION
+ * 2021-02-09      1.0                 ThaiNV           Add Field
  */
 package entity;
 
 /**
  *
- * @author taola
+ * @author ThaiNV
  */
 public class Product {
     private int id;
@@ -15,7 +19,7 @@ public class Product {
     private int vehicleTypeId;
     private String name;
     private String madeIn;
-    private String ManufactureYear;
+    private String manufactureYear;
     private String descript;
     private String img;
     private int quatity;
@@ -26,13 +30,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, int brandId, int vehicleTypeId, String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId) {
+    public Product(int id, int brandId, int vehicleTypeId, String name, String madeIn, String manufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId) {
         this.id = id;
         this.name = name;
         this.brandId = brandId;
         this.vehicleTypeId = vehicleTypeId;
         this.madeIn = madeIn;
-        this.ManufactureYear = ManufactureYear;
+        this.manufactureYear = manufactureYear;
         this.descript = descript;
         this.img = img;
         this.quatity = quatity;
@@ -82,11 +86,11 @@ public class Product {
     }
 
     public String getManufactureYear() {
-        return ManufactureYear;
+        return manufactureYear;
     }
 
     public void setManufactureYear(String ManufactureYear) {
-        this.ManufactureYear = ManufactureYear;
+        this.manufactureYear = ManufactureYear;
     }
 
     public String getDescript() {
@@ -139,7 +143,7 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "id=" + id + ", name=" + name + ", brandId=" + brandId + ", vehicleTypeId=" + vehicleTypeId + ", madeIn=" + madeIn + ", ManufactureYear=" + ManufactureYear + ", descript=" + descript + ", img=" + img + ", quatity=" + quatity + ", price=" + price + ", discount=" + discount + ", sellerId=" + sellerId + '}';
+        return "Product{" + "id=" + id + ", name=" + name + ", brandId=" + brandId + ", vehicleTypeId=" + vehicleTypeId + ", madeIn=" + madeIn + ", ManufactureYear=" + manufactureYear + ", descript=" + descript + ", img=" + img + ", quatity=" + quatity + ", price=" + price + ", discount=" + discount + ", sellerId=" + sellerId + '}';
     }
 
     

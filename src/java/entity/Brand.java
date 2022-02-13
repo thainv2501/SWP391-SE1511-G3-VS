@@ -8,7 +8,7 @@ package entity;
 
 /**
  *
- * @author taola
+ * @author ThaiNV
  */
 public class Brand {
     private int id;

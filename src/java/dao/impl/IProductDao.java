@@ -15,4 +15,5 @@ import java.util.Vector;
 public interface IProductDao {
     public Vector<Product> getAllProducts(); 
     public Vector<Product> getAllProductsByVehicleTypeId(int vtid) ;
+    public Vector<Product> getAllProductsWithCondition(int vtid,int brandId,String sort) ;
 }

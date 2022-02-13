@@ -88,6 +88,11 @@
                                         <h2 class="product-price"> ${p.price}$</h3>
 
                                     </section>
+                                         <section>
+                                        <p class=""><i class="bi bi-geo-alt-fill"></i> ${p.madeIn}</p>
+                                        <p class=""> ${p.manufactureYear}</p>
+
+                                    </section>
                                     <div class="mt-auto">
                                         <button type="button" class="btn btn-outline-secondary m-2"> <a href="#"></a>See more >> </button>
                                         <button type="button" class="btn btn-outline-secondary"> <a href="#"></a><i class="bi bi-cart-plus-fill"></i></button>
