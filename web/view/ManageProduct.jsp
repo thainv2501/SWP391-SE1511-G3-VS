@@ -204,13 +204,13 @@ header img{
                 <div class="row1">
                     <form class="navbar-form navbar-right" action="search" method="get" >
                         
-                     <select name="genreid" onchange="location = this.value;">
+                     <select name="brandid" onchange="location = this.value;">
                 <option value="0">Brand</option>
-                <c:forEach items="${requestScope.cate}" var="o">
-                    <option  value="category?genreid=${o.genreid}"> ${o.catename} </option>
+                <c:forEach items="${requestScope.brand}" var="o">
+                    <option  value="searchbrandforseller?brandid=${o.id}"> ${o.name} </option>
                 </c:forEach> </select>
                         
-                <input value="${title}" name="txt" type="text" class="SearchBox" placeholder="Product Name"></li>
+                <input value="${name}" name="productname" type="text" class="SearchBox" placeholder="Product Name"></li>
           
                <input type="submit" class="SearchButton" value="Search"\>  <i class="fa fa-search"></i></li>
           
@@ -231,20 +231,23 @@ header img{
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requestScope.bookk}" var="o">
+                    <c:forEach items="${requestScope.product}" var="o">
                     <tr>
                         <td>
-                            ${o.title}
+                            ${o.sellerId}
                         </td>
                         <td>
-                            <img src="${o.image}">
+                            ${o.name}
                         </td>
-                        <td>${o.language}</td>
+                        <td>
+                            <img src="${o.img}">
+                        </td>
+                        <td>${o.brandId}</td>
                         <td>${o.price}Đ</td>
                         <td>
                         
-                            <a href="loadedit?bid=${o.bookID}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a href="delete?bid=${o.bookID}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <a href="loadedit?bid=${o.id}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a href="delete?bid=${o.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                     </c:forEach>
@@ -257,7 +260,7 @@ header img{
 <div id="addBook" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="add" method="post">
+                    <form action="addproduct" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Add New Product</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -268,28 +271,31 @@ header img{
                             <div class ="col-md-6">
                             <div class="form-group">
                                 <label>Product Name</label>
-                                <input name="title" class="form-control" required></input>
+                                <input name="productname" class="form-control" required></input>
                             </div>
-                     
-                            
-                            <div class="form-group">
-                                <label>Type</label>
-                                <input name="image" type="text" class="form-control" required>
+                    
+                                 <div class="form-group">
+                                <label>Discount</label>
+                                <input name="discount" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Price</label>
                                 <input name="price" type="text" class="form-control" required placeholder="VNĐ">
                             </div>
                             
-                             <div class="form-group">
-                                <label>Author</label>
-                                <input name="author" class="form-control" required></input>
-                            </div>
                                 <div class="form-group">
                                 <label>Brand</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${requestScope.cate}" var="o">
-                                        <option value="${o.genreid}">${o.catename}</option>
+                                <select name="brand" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${requestScope.brand}" var="o">
+                                        <option value="${o.id}">${o.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                                <div class="form-group">
+                                <label>VehicleType</label>
+                                <select name="type" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${requestScope.vehicleType}" var="o">
+                                        <option value="${o.vehicleTypeId}">${o.vehicleTypeName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -299,16 +305,16 @@ header img{
                                 <div class="col-md-6">
                             <div class="form-group right">
                                 <label>Made In</label>
-                                <input name="nopage" class="form-control" required></input>
+                                <input name="madeIn" class="form-control" required></input>
                             </div>
                             <div class="form-group right">
                                 <label>Manufacture Year</label>
-                                <input name="pyear" class="form-control" required></input>
+                                <input name="Myear" class="form-control" required></input>
                             </div>
                             
                             <div class="form-group right">
                                 <label>Image</label>
-                                <input name="publisher" class="form-control" required></input>
+                                <input name="img" class="form-control" required></input>
                             </div>
                                  <div class="form-group right">
                                 <label>Quantity</label>
