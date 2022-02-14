@@ -85,10 +85,10 @@ public class register extends HttpServlet {
         String contextPath = request.getContextPath();
         if (mess.equalsIgnoreCase("oke")){
             request.setAttribute("Account", null);
-            response.sendRedirect("./view/Homes/home.jsp");
+            response.sendRedirect("login");
         } else {
             request.setAttribute("Account", a);
-            request.getRequestDispatcher("view/Register.jsp").forward(request, response);
+            request.getRequestDispatcher("view/register.jsp").forward(request, response);
         }
         
     }

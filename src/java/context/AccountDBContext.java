@@ -31,7 +31,7 @@ public class AccountDBContext extends DBContext {
                 Account ac = new Account();
                 ac.setUsername(rs.getString("username"));
                 ac.setPassword(rs.getString("password"));
-                ac.setStatus(rs.getString(6));
+                //ac.setStatus(rs.getString("status"));
                 return ac;
             }
         } catch (SQLException ex) {
@@ -39,7 +39,7 @@ public class AccountDBContext extends DBContext {
         }
         return null;
     }
-    
+
     public Account getAccountId(int id) {
         try {
             String sql = " select * from Account\n"
@@ -66,7 +66,7 @@ public class AccountDBContext extends DBContext {
                     + "           ([username]\n"
                     + "           ,[password]\n"
                     + "           ,[email]\n"
-                    + "           ,[displayname])\n"
+                    + "           ,[displayname]\n"
                     + "           ,[status])\n"
                     + "     VALUES\n"
                     + "           (?\n"

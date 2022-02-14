@@ -71,6 +71,7 @@ public class login extends HttpServlet {
         String contextPath = request.getContextPath();
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
+        response.getWriter().print(user);
         AccountDBContext adb = new AccountDBContext();
         Account ac = new Account();
         ac.setUsername(user);
@@ -78,7 +79,7 @@ public class login extends HttpServlet {
         if (adb.getAccount(ac) != null) {
             ac = adb.getAccount(ac);
             request.getSession().setAttribute("account", ac);
-            response.sendRedirect(contextPath + "/home");
+            response.sendRedirect(contextPath + "/homePage");
         } else {
             response.getWriter().print("Failed");
         }
