@@ -25,6 +25,7 @@ public interface IProductDAO {
     *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
      */
     public Vector<Product> getAllProductsByVehicleTypeId(int vtid) ;
+    
     /* get all product
     vtid search follow type id  
     brand id to dearch follow brand id

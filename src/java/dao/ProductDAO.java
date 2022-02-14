@@ -146,9 +146,63 @@ public class ProductDAO extends DBContext implements IProductDAO {
         return vec;
     }
 
+    /* get all product
+    vtid search follow type id  
+    brand id to dearch follow brand id
+    string sort to sort by option 
+    from database
+    ==> return a list of product coitain : int id, int brandId, int vehicleTypeId, 
+    *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
+     */
+    
     @Override
     public Vector<Product> getAllProductsWithCondition(int vtid, int brandId, String sort) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Vector vec = new Vector();
+        try {
+            con = getConnection();
+
+            try {
+                System.out.println("Ket noi Thanh cong");
+            } catch (Exception e) {
+                System.out.println("Co loi khi ket noi " + e.getMessage());
+            }
+            String sql = "SELECT * from Product"
+                    + " where vehicleTypeId = ? "
+                    + "order by ManufactureYear desc";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, vtid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                vec.add(new Product(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getFloat(10),
+                        rs.getFloat(11),
+                        rs.getInt(12)
+                )
+                );
+            }
+        } catch (Exception ex) {
+            System.out.println("Error");
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return vec;
     }
 
     public static void main(String[] args) {
