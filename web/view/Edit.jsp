@@ -162,7 +162,7 @@ header{
 <div id="editProduct">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="edit" method="post">
+                    <form action="editproduct" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Product's<b> Info</b></h4>
                             <a href="manage" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
@@ -173,28 +173,35 @@ header{
                             <div class ="col-md-4">
                                 <div class="form-group">
                                 <label>ProductID</label>
-                                <input value="${dt}" name="bookid" class="form-control" readonly="" required></input>
+                                <input value="${product.id}" name="productid" class="form-control" readonly="" required></input>
                             </div>
                             <div class="form-group">
                                 <label>Product Name</label>
-                                <input value="${dt}" name="title" class="form-control" required></input>
-                            </div>
-                     
-                            <div class="form-group">
-                                <label>Type</label>
-                                <input value="${dt}" name="nopage" class="form-control" required></input>
+                                <input value="${product.name}" name="name" class="form-control" required></input>
                             </div>
                             
                             <div class="form-group">
                                 <label>Price</label>
-                                <input value="${dt}" name="price" type="text" class="form-control" required placeholder="VNĐ">
+                                <input value="${product.price}" name="price" type="text" class="form-control" required placeholder="VNĐ">
+                            </div>
+                            <div class="form-group">
+                                <label>Discount</label>
+                                <input value="${product.discount}" name="discount" type="text" class="form-control" required placeholder="%">
                             </div>
                            
                                 <div class="form-group">
                                 <label>Brand</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${requestScope}" var="o">
-                                        <option value="${o}">${o}</option>
+                                <select name="brand" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${requestScope.brand}" var="o">
+                                        <option value="${o.id}">${o.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                             <div class="form-group">
+                                <label>VehicleType</label>
+                                <select name="type" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${requestScope.vehicleType}" var="o">
+                                        <option value="${o.vehicleTypeId}">${o.vehicleTypeName}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -206,22 +213,22 @@ header{
                             
                             <div class="form-group right">
                                 <label>Manufacture Year</label>
-                                <input value="${dt}" name="pyear" class="form-control" required></input>
+                                <input value="${product.manufactureYear}" name="Myear" class="form-control" required></input>
                             </div>
                             <div class="form-group right">
                                 <label>Made In</label>
-                                <input value="${dt}"name="language" class="form-control" required></input>
+                                <input value="${product.madeIn}"name="MadeIn" class="form-control" required></input>
                             </div>
                             <div class="form-group right">
                                 <label>Quantity</label>
-                                <input value="${dt}" name="publisher" class="form-control" required></input>
+                                <input value="${product.quatity}" name="quantity" class="form-control" required></input>
                             </div>
                             </div>
                             
                             <div class="col-md-4">
                                 <div class="form-group">
                                 <label>Image</label>
-                                <input value="${dt}" name="image" class="form-control" required></input>
+                                <input value="${product.img}" name="image" class="form-control" required></input>
                             </div>
                             </div>
                             </div>
@@ -231,7 +238,7 @@ header{
                             
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="description" class="form-control" required>${dt}</textarea>
+                                <textarea name="description" class="form-control" required>${product.descript}</textarea>
                             </div>
                             
 

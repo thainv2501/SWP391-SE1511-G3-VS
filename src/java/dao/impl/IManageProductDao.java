@@ -22,4 +22,10 @@ public interface IManageProductDao {
                              String madein,String manufactureYear,String descript,
                               String img,int quatity,float price,float discount,
                                int sid);
+     public void deleteProduct(String pid);
+     public Product getProductByID(int pid);
+      public void EditProduct(String Branid,String vehicleTypeId,String name,
+                              String MadeIn,String manufactureYear,String description,
+                              String image,String quantity,String price ,String discount,String id);
+
 }

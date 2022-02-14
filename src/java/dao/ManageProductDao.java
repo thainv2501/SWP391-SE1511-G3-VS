@@ -113,4 +113,112 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
             }
       }
      }
+
+    @Override
+    public void deleteProduct(String pid) {
+        Connection con = null;
+        PreparedStatement ps = null;
+         String sql="delete from Product\n" +
+                    "where ProductId = ?";
+         try{
+            ps=con.prepareStatement(sql);
+            ps.setString(1,pid);
+            ps.executeUpdate();
+         }catch(Exception e){
+             System.out.println(e);
+         }finally{
+            try {
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
+    }
+
+    @Override
+    public Product getProductByID(int pid) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+          String sql="select * from Product\n" 
+        +"where ProductId= ?";
+        try{
+            ps=con.prepareStatement(sql);
+            ps.setInt(1,pid);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Product p=new Product();
+                p.setId(rs.getInt("ProductId"));
+                p.setBrandId(rs.getInt("BrandId"));
+                p.setVehicleTypeId(rs.getInt("vehicleTypeId"));
+                p.setName(rs.getString("ProductName"));
+                p.setMadeIn(rs.getString("MadeIn"));
+                p.setManufactureYear(rs.getString("ManufactureYear"));
+                p.setDescript(rs.getString("Description"));
+                p.setImg(rs.getString("Image"));
+                p.setQuatity(rs.getInt("Quantity"));
+                p.setPrice(rs.getFloat("UnitPrice"));
+                p.setDiscount(rs.getFloat("Discount"));
+                return p;
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }finally{
+            try {
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
+        
+        return null;
+    }
+   
+
+    @Override
+    public void EditProduct(String Branid, String vehicleTypeId, String name, String MadeIn, String manufactureYear, String description, String image, String quantity, String price, String discount, String id) {
+         Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+         String sql= "update Product\n" +
+"set  BrandId = ?,\n" +
+"     vehicleTypeId = ?,\n" +
+"     ProductName = ?,\n" +
+"     MadeIn = ?,\n" +
+"     ManufactureYear = ?,\n" +
+"     Description = ?,\n" +
+"     Image = ?,\n" +
+"     Quantity = ?,\n" +
+"     UnitPrice = ?,\n" +
+"     Discount = ?,\n" +
+"	where ProductId = ?";
+         try{
+            ps=con.prepareStatement(sql);
+            ps.setString(1,Branid);
+            ps.setString(2,vehicleTypeId);
+            ps.setString(3,name);
+            ps.setString(4,MadeIn);
+            ps.setString(5,manufactureYear);
+            ps.setString(6,description);
+            ps.setString(7,image);
+            ps.setString(8,quantity);
+            ps.setString(9,price);
+            ps.setString(10,discount);
+            ps.setString(11,id);
+            ps.executeUpdate();
+         }catch(Exception e){
+             System.out.println(e);  
+         }
+        finally{
+            try {
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+      }
+    }
+        
 }

@@ -36,6 +36,18 @@
         <servlet-name>AddProduct</servlet-name>
         <servlet-class>controller.AddProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteProduct</servlet-name>
+        <servlet-class>controller.DeleteProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProduct</servlet-name>
+        <servlet-class>controller.EditProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadEditProduct</servlet-name>
+        <servlet-class>controller.LoadEditProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>ManageAccount</servlet-name>
         <url-pattern>/manageAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProduct</servlet-name>
+        <url-pattern>/deleteproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProduct</servlet-name>
+        <url-pattern>/editproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadEditProduct</servlet-name>
+        <url-pattern>/loadeditproduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
