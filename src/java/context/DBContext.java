@@ -16,19 +16,23 @@ import java.util.logging.Logger;
  * @author sonnt
  */
 public class DBContext {
-    public Connection connection;
-    public DBContext()
-    {
-        try {
-            //Change the username password and url to connect your own database
-            String username = "sa";
-            String password = "vietthai2001";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=VehicalShop";
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
+    /*USE BELOW METHOD FOR YOUR DATABASE CONNECTION FOR BOTH SINGLE AND MULTILPE SQL SERVER INSTANCE(s)*/
+    /*DO NOT EDIT THE BELOW METHOD, YOU MUST USE ONLY THIS ONE FOR YOUR DATABASE CONNECTION*/
+     public Connection getConnection()throws Exception {        
+        String url = "jdbc:sqlserver://"+serverName+":"+portNumber +
+                ";databaseName="+dbName;//+"; integratedSecurity=true";
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");         
+        return DriverManager.getConnection(url, userID, password);
+//        return DriverManager.getConnection(url);
     }
     
+    /*Insert your other code right after this comment*/
+   
+    /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
+    private final String serverName = "DESKTOP-BOJQAKE\\KTEAM";
+    private final String dbName = "VehicalShop";
+    private final String portNumber = "2001";
+    private final String userID = "sa";
+    private final String password = "vietthai2001";
 }

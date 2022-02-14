@@ -42,7 +42,7 @@ public class search extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet search</title>");            
+            out.println("<title>Servlet search</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet search at " + request.getContextPath() + "</h1>");
@@ -80,7 +80,14 @@ public class search extends HttpServlet {
         //processRequest(request, response);
         String keyWord = request.getParameter("keyWord").trim();
         HttpSession ses = request.getSession();
-        Vector<Product> availableProduct =  (Vector<Product>) ses.getAttribute("availableProduct");
+        Vector<Product> availableProduct = new Vector<>();
+        if ((int) ses.getAttribute("vtid") == 1) {
+            availableProduct = (Vector<Product>) ses.getAttribute("allCar");
+        } else {
+            availableProduct = (Vector<Product>) ses.getAttribute("allMoto");
+
+        }
+
         Vector<Product> allProductByKeyWord = new Vector<>();
         for (Product product : availableProduct) {
             if (product.getName().toLowerCase().contains(keyWord.toLowerCase())) {

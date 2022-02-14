@@ -9,7 +9,7 @@
  */
 package controller;
 
-import dao.ProductDao;
+import dao.ProductDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -41,7 +41,7 @@
                 <p class="m-2 border-bottom text-center">Search and filter </p>
                 <form action="search" method="post">
                     <div class="input-group mb-3 ">
-                        <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" value="${keyWord}" >
+                        <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" value="${keyWord}" pattern=".{50}" >
                         <button class="btn btn-outline-secondary" type="submit" >Search</button>
                     </div>
                 </form>

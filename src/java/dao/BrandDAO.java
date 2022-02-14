@@ -10,16 +10,19 @@
 package dao;
 
 import context.DBContext;
-import entity.VehicleType;
-import dao.impl.IVehicleTypeDao;
+import entity.Brand;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import dao.impl.IBrandDAO;
 
 /**
  * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
- * VehicleTpye. Trong các phương thức update or insert của lớp, dữ liệu được chuẩn hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
+ * Brand. Trong các phương thức update or insert của lớp, dữ liệu được chuẩn hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
  * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu
  * Bugs : 
  *
@@ -28,51 +31,62 @@ import java.util.Vector;
 
 
 /**
- * The class contains method find, update, delete, insert VehicleType information from
- * VehicleType table in database. In the update or insert method, all data will be normalized (trim space) before update/insert into database
+ * The class contains method find, update, delete, insert brand information from
+ * Brand table in database. In the update or insert method, all data will be normalized (trim space) before update/insert into database
  * The method wil throw an object  of java.lang.Exception class if there is any error occurring when finding, inserting, or updating data
  * <p>Bugs: 
  *
  * @author Nguyen Viet Thai
  */
-public class VehicleTypeDao extends DBContext implements IVehicleTypeDao{
+
+public class BrandDAO extends DBContext implements IBrandDAO {
+
     /*
-    take all vehicleType from dâtbase ==>  will return a list of VehicleType contain : vehicleTypeID, cehicleTypeName
+    take all brand ==>  will return a list of brand contain : brandID, brandName
     */
-    @Override
-    public Vector<VehicleType> getAllVehicleType() {
-        Connection con;
-        PreparedStatement ps;
-        ResultSet rs;
+    public Vector<Brand> getAllBrand() {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         Vector vec = new Vector();
         try {
 
-            con = connection;
+            con = getConnection();
             try {
                 System.out.println("Ket noi Thanh cong");
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "select * from vehicleType";
+            String sql = "SELECT *\n"
+                    + "  FROM [VehicalShop].[dbo].[Brand]";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                vec.add(new VehicleType(rs.getInt(1),
-                        rs.getString(2)
+                vec.add(new Brand(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3)
                 )
                 );
             }
         } catch (Exception ex) {
             System.out.println("Error");
+        }finally{
+            try {
+                ps.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return vec;
     }
     
     public static void main(String[] args) {
-        VehicleTypeDao dao = new VehicleTypeDao();
-        Vector<VehicleType> vec = dao.getAllVehicleType();
-        for (VehicleType vehicleType : vec) {
-            System.out.println(vehicleType);
+        BrandDAO dao = new BrandDAO();
+        Vector<Brand> vec = dao.getAllBrand();
+        for (Brand brand : vec) {
+            System.out.println(brand);
         }
     }
 }

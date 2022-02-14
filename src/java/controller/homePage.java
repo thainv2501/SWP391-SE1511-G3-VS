@@ -9,12 +9,11 @@
  */
 package controller;
 
-import dao.BrandDao;
-import dao.ProductDao;
-import dao.VehicleTypeDao;
+import dao.BrandDAO;
+import dao.ProductDAO;
+import dao.VehicleTypeDAO;
 import entity.Product;
 import entity.VehicleType;
-import dao.impl.IProductDao;
 import entity.Brand;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import dao.impl.IProductDAO;
 
 /**
  *HomePage
@@ -45,16 +45,7 @@ public class homePage extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet homePage</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet homePage at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+           
         }
     }
 
@@ -71,21 +62,19 @@ public class homePage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        //request.getRequestDispatcher("home/homePage.jsp").forward(request, response);
+        
         HttpSession ses = request.getSession();
-        IProductDao productDao = new ProductDao();
-        VehicleTypeDao vehicleTypeDao = new VehicleTypeDao();
-        BrandDao brandDao = new BrandDao();
+        IProductDAO productDao = new ProductDAO();
+        VehicleTypeDAO vehicleTypeDao = new VehicleTypeDAO();
+        BrandDAO brandDao = new BrandDAO();
         Vector<Product> allCar = (Vector) productDao.getAllProductsByVehicleTypeId(1);
         Vector<Product> allMoto = (Vector) productDao.getAllProductsByVehicleTypeId(2);
-
         Vector<VehicleType> allVehicleType = (Vector) vehicleTypeDao.getAllVehicleType();
         Vector<Brand> allBrand = brandDao.getAllBrand();
         ses.setAttribute("allBrand", allBrand);
         ses.setAttribute("allVehicleType", allVehicleType);
         ses.setAttribute("allCar", allCar);
         ses.setAttribute("allMoto", allMoto);
-
         request.getRequestDispatcher("view/homePage.jsp").forward(request, response);
     }
 
