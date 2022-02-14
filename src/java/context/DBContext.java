@@ -34,5 +34,5 @@ public class DBContext {
     private final String dbName = "VehicalShop";
     private final String portNumber = "2001";
     private final String userID = "sa";
-    private final String password = "vietthai2001";
+    private final String password = "123";
 }

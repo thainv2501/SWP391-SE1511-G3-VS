@@ -18,4 +18,8 @@ import java.util.List;
  */
 public interface IManageProductDao {
      public List<Product> getProductBySellerid(int sid);
+     public void AddProduct(int brandid,int vehicleTypeid,String name,
+                             String madein,String manufactureYear,String descript,
+                              String img,int quatity,float price,float discount,
+                               int sid);
 }
