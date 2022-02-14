@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/impl/IProductDAO.java</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/controller/search.java</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/web/view/productList.jsp</file>
@@ -15,6 +16,12 @@
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/VehicleTypeDAO.java</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/controller/homePage.java</file>
             <file>file:/D:/Source/Work/Project/SWP391-SE1511-G3-VS/src/java/dao/impl/IBrandDAO.java</file>
+=======
+            <file>file:/C:/Users/Acer/SWP391-SE1511-G3-VS/src/java/context/AccountDBContext.java</file>
+            <file>file:/C:/Users/Acer/SWP391-SE1511-G3-VS/src/java/entity/Product.java</file>
+            <file>file:/C:/Users/Acer/SWP391-SE1511-G3-VS/web/view/ManageProduct.jsp</file>
+            <file>file:/C:/Users/Acer/SWP391-SE1511-G3-VS/src/java/dao/ManageProductDao.java</file>
+>>>>>>> 5fb48f69d471aca26d75104901ca5a9e228f2ff7
         </group>
     </open-files>
 </project-private>
