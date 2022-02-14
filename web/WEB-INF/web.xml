@@ -20,6 +20,10 @@
         <servlet-name>AuthorizeSeller</servlet-name>
         <servlet-class>controller.AuthorizeSeller</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>register</servlet-name>
+        <servlet-class>controller.register</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AuthorizeSeller</servlet-name>
         <url-pattern>/Authorize</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>register</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
