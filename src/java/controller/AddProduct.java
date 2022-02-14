@@ -5,7 +5,7 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-02-14      1.0                 QuanTBA           First Implement
+ * 2022-02-14      1.0                 QuanTBA          Add Field
  */
 package controller;
 
