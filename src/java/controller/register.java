@@ -56,7 +56,7 @@ public class register extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setAttribute("Account", null);
-        request.getRequestDispatcher("view/Register.jsp").forward(request, response);
+        request.getRequestDispatcher("view/register.jsp").forward(request, response);
     }
 
     /**
