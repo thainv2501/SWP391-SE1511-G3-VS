@@ -115,7 +115,7 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
      }
 
     @Override
-    public void deleteProduct(String pid) {
+     public void deleteProduct(String pid) {
         Connection con = null;
         PreparedStatement ps = null;
          String sql="delete from Product\n" +

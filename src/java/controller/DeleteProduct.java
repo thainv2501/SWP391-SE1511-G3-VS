@@ -64,7 +64,7 @@ public class DeleteProduct extends HttpServlet {
          String pid = request.getParameter("pid");
      ManageProductDao manageproductdao = new ManageProductDao();
      manageproductdao.deleteProduct(pid);
-     response.sendRedirect("manageproduct");
+      response.sendRedirect("manageproduct");
     }
 
     /**

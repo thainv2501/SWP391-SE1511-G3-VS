@@ -76,7 +76,7 @@ public class LoadEditProduct extends HttpServlet {
         List<VehicleType> listvehicleType = vehicleTypeDao.getAllVehicleType();
         
         
-        request.setAttribute("vehicleType", listvehicleType);
+         request.setAttribute("vehicleType", listvehicleType);
          request.setAttribute("brand", listbrand);
         request.setAttribute("product", prod);
         request.getRequestDispatcher("Edit.jsp").forward(request, response);

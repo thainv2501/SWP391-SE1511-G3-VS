@@ -196,7 +196,7 @@ header{
                                         <option value="${o.id}">${o.name}</option>
                                     </c:forEach>
                                 </select>
-                            </div>
+                             </div>
                              <div class="form-group">
                                 <label>VehicleType</label>
                                 <select name="type" class="form-select" aria-label="Default select example">
