@@ -34,6 +34,13 @@ public class Account {
         this.urlavata = urlavata;
     }
 
+    public Account(String username, String password, String status, Role roleId) {
+        this.username = username;
+        this.password = password;
+        this.status = status;
+        this.roleId = roleId;
+    }
+
       
     public Account() {
     }
