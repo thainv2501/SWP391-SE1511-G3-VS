@@ -41,28 +41,24 @@
                 <p class="m-2 border-bottom text-center">Search and filter </p>
                 <form action="search" method="post">
                     <div class="input-group mb-3 ">
-                        <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" value="${keyWord}" pattern=".{50}" >
-                        <button class="btn btn-outline-secondary" type="submit" >Search</button>
+                        <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" value="${keyWord}" pattern=".{0,50}" title="can not over 50 char" >
                     </div>
-                </form>
 
-                <form action="">
                     <select class="form-select" aria-label="Default select example">
                         <option selected value="all">Open this select menu</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
                     </select>
-                    <button class="btn btn-outline-secondary w-100" type="submit" >Filter</button>
-                </form>
-                <div class="brand-category border border-dark m-2 rounded">
-                    <ul >
-                        <li ><h6 class="dropdown-header border-bottom">Brand</h6></li>
-                        <li class="active"><a class="dropdown-item border-bottom" href="#" >All</a></li>
-                        <c:forEach items="${allBrand}" var="b"> <li class=""><a class="dropdown-item border-bottom" href="#" >${b.name}</a></li> </c:forEach>
-                        </ul>
-
-                    </div>
+                    <div class="brand-category border border-dark m-2 rounded">
+                        <ul >
+                            <li ><h6 class="dropdown-header border-bottom">Brand</h6></li>
+                            <c:forEach items="${allBrand}" var="b"><li class=""> <input type="radio" class="btn-check" name="brand" id="${b.id}" value="${b.id}">
+                            <label class="btn btn-outline-secondary w-100" for="${b.id}">${b.name}</label></li></c:forEach>
+                            </ul>
+                        </div>
+                     <button class="btn btn-outline-secondary w-100" type="submit" >GO!!!!</button>
+                    </form>
                 </div>
                 <!-- start list -->
                 <div class="col-10 newest-moto-product bg-dark text-light">
@@ -88,7 +84,7 @@
                                         <h2 class="product-price"> ${p.price}$</h3>
 
                                     </section>
-                                         <section>
+                                    <section>
                                         <p class=""><i class="bi bi-geo-alt-fill"></i> ${p.madeIn}</p>
                                         <p class=""> ${p.manufactureYear}</p>
 
