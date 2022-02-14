@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package context;
+package dao;
 
+import context.DBContext;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ import entity.Account;
  *
  * @author levan
  */
-public class AccountDBContext extends DBContext {
+public class AccountDao extends DBContext {
 
     public Account getAccount(Account a) {
         try {
@@ -35,7 +36,7 @@ public class AccountDBContext extends DBContext {
                 return ac;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -55,7 +56,7 @@ public class AccountDBContext extends DBContext {
                 return ac;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -82,7 +83,7 @@ public class AccountDBContext extends DBContext {
             stm.setString(5, a.getStatus());
             stm.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
             return ("not oke");
         }
         return ("oke");
@@ -98,7 +99,7 @@ public class AccountDBContext extends DBContext {
             stm.setString(2, a.getUsername());
             stm.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

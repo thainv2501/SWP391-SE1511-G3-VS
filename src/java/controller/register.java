@@ -5,7 +5,7 @@
  */
 package controller;
 
-import context.AccountDBContext;
+import dao.AccountDao;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -80,7 +80,7 @@ public class register extends HttpServlet {
         a.setEmail(email);
         a.setDisplayname(dis);
         a.setStatus("active");
-        AccountDBContext adb = new AccountDBContext();
+        AccountDao adb = new AccountDao();
         String mess = adb.Insert(a);
         String contextPath = request.getContextPath();
         if (mess.equalsIgnoreCase("oke")){
