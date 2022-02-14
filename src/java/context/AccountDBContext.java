@@ -67,8 +67,10 @@ public class AccountDBContext extends DBContext {
                     + "           ,[password]\n"
                     + "           ,[email]\n"
                     + "           ,[displayname])\n"
+                    + "           ,[status])\n"
                     + "     VALUES\n"
                     + "           (?\n"
+                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?)";
@@ -77,6 +79,7 @@ public class AccountDBContext extends DBContext {
             stm.setString(2, a.getPassword());
             stm.setString(3, a.getEmail());
             stm.setString(4, a.getDisplayname());
+            stm.setString(5, a.getStatus());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(AccountDBContext.class.getName()).log(Level.SEVERE, null, ex);
