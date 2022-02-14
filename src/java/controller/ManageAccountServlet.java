@@ -1,34 +1,29 @@
 /*
- * Copyright(C) 2021, group 3 SE1511JS
- * T.NET:
- *  Vehicle Store
+ * Copyright(C) 2005, G3-VS.
+ * Vehicle Store
+ *  
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2021-02-13      1.0                 TungNQ           Add Field
+ * 2018-09-10      1.0                 TUNGNQ           First Implement
  */
 package controller;
 
-import dao.AuthorizeSellerdao;
-import entity.Product;
-import entity.Seller;
+import dao.ManageAccountdao;
+import dao.impl.IManageAccountdao;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * cập nhật dữ liệu từ trong database đến bảng seller chưa được đăng kí
- * Trong quá trình hoạt động nếu gặp null pointer exception sẽ được đưa về trang login
- * <p>Bug
+ *
  * @author nqt26
  */
-public class AuthorizeSeller extends HttpServlet {
+public class ManageAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +42,10 @@ public class AuthorizeSeller extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AuthorizeSeller</title>");            
+            out.println("<title>Servlet ManageAccount</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AuthorizeSeller at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ManageAccount at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,17 +63,7 @@ public class AuthorizeSeller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-              //processRequest(request, response);
-     try{
-       request.setCharacterEncoding("UTF-8"); // chạy được tiếng việt
-        AuthorizeSellerdao authorizeSellerdao =new AuthorizeSellerdao();
-        List<Seller> listSeller= authorizeSellerdao.getInactiveSellerAccount();
-        request.setAttribute("seller", listSeller);
-       request.getRequestDispatcher("view/AuthorizeSeller.jsp").forward(request, response);
-        }catch(NullPointerException e){
-                response.sendRedirect("view/login");
-        }
-    
+        processRequest(request, response);
     }
 
     /**
@@ -92,7 +77,10 @@ public class AuthorizeSeller extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int roleId = Integer.parseInt(request.getParameter("roleId"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        IManageAccountdao manageacountdao = new ManageAccountdao();
+        Account account = manageacountdao.searchAccount(roleId, id);
     }
 
     /**
