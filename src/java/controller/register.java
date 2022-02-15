@@ -15,11 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Lớp này có các phương thức thực hiện thêm dữ liệu từ bảng
- * Account. Trong các phương thức insert của lớp, dữ liệu được chuẩn
- * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
- * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
- * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
+ * Lớp này có các phương thức thực hiện truy vấn dữ liệu từ bảng
+ * Account.
+ * 
  *
  * @author levan
  */
