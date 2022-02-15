@@ -21,10 +21,25 @@ public interface IProductDAO {
     *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
      */
     public Vector<Product> getAllProducts(); 
+    
+    
+    
     /* get all product by vehicleType from database ==> return a list of product coitain : int id, int brandId, int vehicleTypeId, 
     *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
      */
     public Vector<Product> getAllProductsByVehicleTypeId(int vtid) ;
+    
+    
+    
+     /* get a product by ID from database ==> return a list of product coitain : int id, int brandId, int vehicleTypeId, 
+    *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
+     */
+     public Product getProductById(int pid) ;
+    
+    
+    
+    
+    
     
     /* get all product
     vtid search follow type id  

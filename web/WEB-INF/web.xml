@@ -48,6 +48,10 @@
         <servlet-name>LoadEditProduct</servlet-name>
         <servlet-class>controller.LoadEditProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>productDetail</servlet-name>
+        <servlet-class>controller.productDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>LoadEditProduct</servlet-name>
         <url-pattern>/loadeditproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>productDetail</servlet-name>
+        <url-pattern>/productDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

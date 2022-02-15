@@ -57,8 +57,8 @@ public class BrandDAO extends DBContext implements IBrandDAO {
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "SELECT *\n"
-                    + "  FROM [VehicalShop].[dbo].[Brand]";
+            String sql = "SELECT * \n"
+                    + "  FROM [Brand]";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
