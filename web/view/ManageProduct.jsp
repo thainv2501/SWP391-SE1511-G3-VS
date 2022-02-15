@@ -199,7 +199,7 @@ header img{
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-4"><a class="link-dark" href="#">Manage <b>Products</b></a></div>
+                    <div class="col-sm-4"><a class="link-dark" href="manageproduct">Manage <b>Products</b></a></div>
                     <div class="col-sm-4"><a class="link-dark" href="#">Report <b>List</b></a></div>
                     <div class="col-sm-4"><a class="link-dark" href="#">Pre-order <b>Customers</b></a></div>
                 </div>
