@@ -1,7 +1,11 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright(C) 2021, group 3 SE1511JS
+ * T.NET:
+ *  Vehicle Store
+ *
+ * Record of change:
+ * DATE            Version             AUTHOR           DESCRIPTION
+ * 2021-02-13      1.0                 TungNQ           Add Method
  */
 package dao.impl;
 
@@ -9,11 +13,11 @@ import entity.Seller;
 import java.util.List;
 
 /**
- * interface dùng cho Authorize Seller
+ * chứa interface dùng cho cấp quyền người bán
  * <p>Bug:
  * @author nqt26
  */
-public interface IAuthorizeSellerdao {
+public interface IAuthorizeSellerDAO {
     public List<Seller> getInactiveSellerAccount();
     public void denySellerAccount(String username);
 }

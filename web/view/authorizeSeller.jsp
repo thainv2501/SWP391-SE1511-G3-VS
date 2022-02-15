@@ -50,7 +50,7 @@
                         <td>${s.gmail}</td>
                         <td>${s.phone}</td>
                         <td><button type="button" class="btn btn-secondary" ><a href="authorizeSeller?id=${s.sellerId}">Accept</a></button>&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-secondary" ><a href="deleteAccount?username">Deny</a></button></td>
+                            <button type="button" class="btn btn-secondary" ><a href="deleteAccount?username=${s.username.username}">Deny</a></button></td>
                     </tr>
                     </c:forEach>
                 </tbody>

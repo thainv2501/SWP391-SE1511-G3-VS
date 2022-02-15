@@ -9,8 +9,7 @@
  */
 package controller;
 
-import dao.ManageAccountdao;
-import dao.impl.IManageAccountdao;
+import dao.ManageAccountDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +17,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import dao.impl.IManageAccountDAO;
 
 /**
  *
@@ -79,7 +79,7 @@ public class ManageAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         int roleId = Integer.parseInt(request.getParameter("roleId"));
         int id = Integer.parseInt(request.getParameter("id"));
-        IManageAccountdao manageacountdao = new ManageAccountdao();
+        IManageAccountDAO manageacountdao = new ManageAccountDAO();
         Account account = manageacountdao.searchAccount(roleId, id);
     }
 

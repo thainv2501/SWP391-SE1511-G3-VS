@@ -9,7 +9,8 @@
  */
 package controller;
 
-import dao.AuthorizeSellerdao;
+import dao.AuthorizeSellerDAO;
+import dao.ManageAccountDAO;
 import entity.Seller;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,14 +19,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import dao.impl.IAuthorizeSellerDAO;
+import dao.impl.IManageAccountDAO;
+import entity.Account;
 
 /**
  * cập nhật dữ liệu từ trong database đến bảng seller chưa được đăng kí Trong
  * Các phương thức sẽ trả về một đối tượng của lớp
  * <code>javax.servlet.ServletException</code> khi có bất cứ lỗi nào xảy ra trong quá trình
  * truy vấn, cập nhật dữ liệu
- * <p>
- * Bug:
+ * <p>Bug:</p>
  *
  * @author nqt26
  */
@@ -72,8 +75,8 @@ public class AuthorizeSellerServlet extends HttpServlet {
         //processRequest(request, response);
         try {
             request.setCharacterEncoding("UTF-8"); // hiển thị tiếng việt
-            AuthorizeSellerdao authorizeSellerdao = new AuthorizeSellerdao();
-            List<Seller> listSeller = authorizeSellerdao.getInactiveSellerAccount();
+            IAuthorizeSellerDAO iauthorizeSellerdao = new AuthorizeSellerDAO();
+            List<Seller> listSeller = iauthorizeSellerdao.getInactiveSellerAccount();
             request.setAttribute("seller", listSeller);
             request.getRequestDispatcher("view/AuthorizeSeller.jsp").forward(request, response);
         } catch (NullPointerException e) {
@@ -94,7 +97,10 @@ public class AuthorizeSellerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try{
-            request.getAttribute("username");
+            String username = request.getParameter("username");
+            IManageAccountDAO iManageAccountDAO = new ManageAccountDAO();
+            iManageAccountDAO.activeAccount(username);
+            response.sendRedirect("authorizeSeller");
         } catch (NullPointerException npt) {
             response.sendRedirect("login");
         }
