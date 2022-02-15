@@ -25,7 +25,7 @@
                 </div>
                 <p <c:if test = "${Account == null}">
                         style="display:none;"
-                    </c:if>> Your account or password wrong! Please reenter</p>
+                    </c:if>> Your account or password wrong! please reenter</p>
                 <div class="form-group">
                     <input type="text" class="form-control item" name="username" placeholder="Username"
                            <c:choose>
@@ -46,7 +46,6 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-block create-account">Login</button>
                 </div>
-                <p> or </p>
                 <div class="form-group">
                     <button onclick="window.location.href='./register'" type="button" class="btn btn-block create-account">Register</button>
                 </div>
