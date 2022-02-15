@@ -33,7 +33,7 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
     @Override
     public List<Product> getProductBySellerid(int sid){
         List<Product> list=new ArrayList<>();
-        String sql="select * from VehicleShop\n" +
+        String sql="select * from Product\n" +
                    "where SellerId = ?" ;
         
         try{
@@ -74,7 +74,7 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
     // Tìm kiếm sản phẩm theo tên
     public List<Product> SearchProductByNameForSeller(int sid,String name){
         List<Product> list=new ArrayList<>();
-        String sql="select * from VehicleShop\n" +
+        String sql="select * from Product\n" +
                    "where SellerId = ?" +
                    "and ProductName = ?";
         
@@ -122,7 +122,7 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
                               String img,int quatity,float price,float discount,
                                int sid){
        
-         String sql="insert VehicleShop\n" +
+         String sql="insert into Product\n" +
 "(BranId,vehicleTypeId,ProductName,MadeIn,ManufactureYear,Description,Image,Quantity,UnitPrice,Discount,SellerId) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
          try{
