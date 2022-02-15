@@ -117,7 +117,7 @@
                                     </section>
                                         <section>
                                         <p class=""><i class="bi bi-geo-alt-fill"></i> ${p.madeIn}</p>
-                                        <p class=""> ${p.manufactureYear}</p>
+                                        <p class=""><i class="bi bi-calendar"></i> ${p.manufactureYear}</p>
 
                                     </section>
                                         
@@ -161,7 +161,7 @@
                                     </section>
                                          <section>
                                         <p class=""><i class="bi bi-geo-alt-fill"></i> ${p.madeIn}</p>
-                                        <p class=""> ${p.manufactureYear}</p>
+                                        <p class=""><i class="bi bi-calendar"></i> ${p.manufactureYear}</p>
 
                                     </section>
                                     <div class="mt-auto">

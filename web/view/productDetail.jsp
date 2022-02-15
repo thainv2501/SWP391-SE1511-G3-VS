@@ -28,23 +28,35 @@
         <jsp:include page="navbar.jsp"></jsp:include>
 
             <div class="container">
+<!--                product detail tiltle-->
                 <div class="row">
                     <div class="col-10">
                         <section class="vehicle-detail-header">
                             <section class="w-100">
-                                <p>${product.madeIn}</p>
-                            <p>${product.manufactureYear}</p>
+                                <p ><i class="bi bi-geo-alt-fill"></i>   ${product.madeIn} </p>
+                            <p><i class="bi bi-calendar"></i>    ${product.manufactureYear}</p>
 
                         </section>
                         <h2 class="">${product.name}</h2>
-                        <h2 class="">${product.price} </h2>
+                        <h2 class="">${product.price} $ </h2>
                     </section>
-                    <img class="w-100" src="${product.img}" alt="">
+                    
+                    
+                </div>
+                <div class="col">
+                </div>
+            </div>
+<!--                    product detail information-->
+                        <div class="row">
+                    <div class="col-10">
+                    <section>
+                    <img class="w-100" src="${product.img}" alt="">    
+                    </section>
                 </div>
                 <div class="col">
                     <div class="space"></div>
                     <div>
-                        <p class="">${product.descript}</p>
+                        <p class="descript">${product.descript}</p>
                         <button type="button" class="btn" > <a class="btn btn-outline-secondary  " ><i class="bi bi-cart-plus-fill"></i></a></button>
                     </div>
                 </div>
