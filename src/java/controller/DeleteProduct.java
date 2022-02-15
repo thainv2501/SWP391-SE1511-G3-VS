@@ -9,7 +9,7 @@
  */
 package controller;
 
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -63,7 +63,7 @@ public class DeleteProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          String pid = request.getParameter("pid");
-     ManageProductDao manageproductdao = new ManageProductDao();
+     ManageProductDAO manageproductdao = new ManageProductDAO();
      manageproductdao.deleteProduct(pid);
       response.sendRedirect("manageproduct");
     }

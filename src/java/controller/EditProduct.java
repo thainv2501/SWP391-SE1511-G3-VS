@@ -9,7 +9,7 @@
  */
 package controller;
 
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -92,7 +92,7 @@ public class EditProduct extends HttpServlet {
         String productid = request.getParameter("productid");
         String quantity = request.getParameter("quantity");
         
-        ManageProductDao manageProductDao = new ManageProductDao();
+        ManageProductDAO manageProductDao = new ManageProductDAO();
         manageProductDao.EditProduct(brand, type, name,madein , manufactureyear, description, image, quantity, price, discount, productid);
         response.sendRedirect("manageproduct");
     }
