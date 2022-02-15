@@ -39,7 +39,7 @@ public class AccountDAO extends DBContext {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Account ac = new Account();
+        Account ac = null;
         try {
             con = getConnection();
 
@@ -51,8 +51,11 @@ public class AccountDAO extends DBContext {
             String sql = " select * from Account\n"
                     + "where [username] = ? and [password] = ?";
             ps = con.prepareStatement(sql);
+            ps.setString(1, a.getUsername());
+            ps.setString(2, a.getPassword());
             rs = ps.executeQuery();
             while (rs.next()) {
+                ac = new Account();
                 ac.setUsername(rs.getString(1));
                 ac.setPassword(rs.getString(2));
                 ac.setDisplayname(rs.getString(3));
@@ -62,8 +65,8 @@ public class AccountDAO extends DBContext {
             return null;
         } finally {
             try {
-                //rs.close();
-                //ps.close();
+                rs.close();
+                ps.close();
                 con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);

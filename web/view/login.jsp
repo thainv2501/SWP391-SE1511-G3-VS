@@ -30,7 +30,7 @@
                     <input type="text" class="form-control item" name="username" placeholder="Username"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.user}"
+                                   value="${Account.username}"
                                </c:when>
                            </c:choose>>
                 </div>
@@ -38,7 +38,7 @@
                     <input type="password" class="form-control item" name="password" placeholder="Password"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.pass}"
+                                   value="${Account.password}"
                                </c:when>
                            </c:choose>>
                 </div>
