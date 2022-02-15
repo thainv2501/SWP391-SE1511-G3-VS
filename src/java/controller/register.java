@@ -11,6 +11,7 @@ package controller;
 
 import dao.AccountDAO;
 import entity.Account;
+import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -74,14 +75,14 @@ public class register extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("password");
-        String email = request.getParameter("email");
-        String dis = request.getParameter("dis");
+        int rol = Integer.parseInt(request.getParameter("role"));
+//        response.getWriter().print(rol);
         Account a = new Account();
         a.setUsername(user);
         a.setPassword(pass);
-        a.setEmail(email);
-        a.setDisplayname(dis);
-        a.setStatus("active");
+        a.setRoleId(new Role(rol));
+        if (rol == 1) a.setStatus("active");
+                else  a.setStatus("inactive");
         AccountDAO adb = new AccountDAO();
         String mess = adb.Insert(a);
         String contextPath = request.getContextPath();

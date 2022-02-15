@@ -25,12 +25,12 @@
                 </div>
                 <p <c:if test = "${Account == null}">
                         style="display:none;"
-                    </c:if>> Your account or password already exists! Please create another</p>
+                    </c:if>> Your account or password wrong! please reenter</p>
                 <div class="form-group">
                     <input type="text" class="form-control item" name="username" placeholder="Username"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.user}"
+                                   value="${Account.username}"
                                </c:when>
                            </c:choose>>
                 </div>
@@ -38,7 +38,7 @@
                     <input type="password" class="form-control item" name="password" placeholder="Password"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.pass}"
+                                   value="${Account.password}"
                                </c:when>
                            </c:choose>>
                 </div>
@@ -46,7 +46,6 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-block create-account">Login</button>
                 </div>
-                <p> or </p>
                 <div class="form-group">
                     <button onclick="window.location.href='./register'" type="button" class="btn btn-block create-account">Register</button>
                 </div>

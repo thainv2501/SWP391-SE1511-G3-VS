@@ -19,20 +19,7 @@ public class Account {
     private String username;
     private String password;
     private String status;
-    private Role roleId;
-    private String email;
-    private String displayname;
-    private String urlavata;
-
-    public Account(String username, String password, String status, Role roleId, String email, String displayname, String urlavata) {
-        this.username = username;
-        this.password = password;
-        this.status = status;
-        this.roleId = roleId;
-        this.email = email;
-        this.displayname = displayname;
-        this.urlavata = urlavata;
-    }
+    private Role roleId;    
 
     public Account(String username, String password, String status, Role roleId) {
         this.username = username;
@@ -75,30 +62,6 @@ public class Account {
 
     public void setRoleId(Role roleId) {
         this.roleId = roleId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getDisplayname() {
-        return displayname;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setDisplayname(String displayname) {
-        this.displayname = displayname;
-    }
-
-    public String getUrlavata() {
-        return urlavata;
-    }
-
-    public void setUrlavata(String urlavata) {
-        this.urlavata = urlavata;
     }
     
 }

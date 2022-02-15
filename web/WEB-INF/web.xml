@@ -53,8 +53,14 @@
         <servlet-class>controller.productDetail</servlet-class>
     </servlet>
     <servlet>
+
         <servlet-name>DeleteSellerAccountServlet</servlet-name>
         <servlet-class>controller.DeleteSellerAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductforSeller</servlet-name>
+        <servlet-class>controller.SearchProductforSeller</servlet-class>
+
     </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
@@ -111,6 +117,10 @@
     <servlet-mapping>
         <servlet-name>DeleteSellerAccountServlet</servlet-name>
         <url-pattern>/deleteSellerAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductforSeller</servlet-name>
+        <url-pattern>/searchproductforseller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
