@@ -64,10 +64,10 @@ public class SearchProductforSeller extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        request.setCharacterEncoding("UTF-8");
-       int sid = Integer.parseInt(request.getParameter("sid"));
+     //  int sid = Integer.parseInt(request.getParameter("sid"));
         String name= request.getParameter("productname");
         ManageProductDAO  manageproductdao= new ManageProductDAO();
-        List<Product> listproduct = manageproductdao.SearchProductByNameForSeller(sid, name);
+        List<Product> listproduct = manageproductdao.SearchProductByNameForSeller(2, name);
         
         request.setAttribute("product", listproduct);
         request.setAttribute("prodname", name);

@@ -72,11 +72,12 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
     }
     
     // Tìm kiếm sản phẩm theo tên
+     @Override
     public List<Product> SearchProductByNameForSeller(int sid,String name){
         List<Product> list=new ArrayList<>();
         String sql="select * from Product\n" +
-                   "where SellerId = ?" +
-                   "and ProductName = ?";
+                   "where SellerId = ? " +
+                   "and ProductName like ?";
         
         try{
             con = getConnection();
@@ -104,9 +105,10 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
             System.out.println(e);
         } finally{
             try {
+                con.close();
                 ps.close();
                 rs.close();
-                con.close();
+                
             } catch (SQLException ex) {
                 Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -262,5 +264,10 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
       }
     }
     
-    
+     public static void main(String[] args) {
+         ManageProductDAO bd = new ManageProductDAO();
+       List <Product> list = bd.SearchProductByNameForSeller(2,"Ghibli");
+       
+            System.out.println(list.get(0).getName());
+    }
 }
