@@ -119,22 +119,21 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
     
     //Thêm sản phẩm mới vào trong danh sách
     @Override
-    public void AddProduct(int brandid,int vehicleTypeid,String name,
+    public void AddProduct(int vehicleTypeid,String name,int brandid,
                              String madein,String manufactureYear,String descript,
                               String img,int quatity,float price,float discount,
                                int sid){
        
-         String sql="insert into Product\n" +
-"(BranId,vehicleTypeId,ProductName,MadeIn,ManufactureYear,Description,Image,Quantity,UnitPrice,Discount,SellerId) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+         String sql="insert Product\n" +
+"(vehicleTypeId,ProductName,BranId,MadeIn,ManufactureYear,Description,Image,Quantity,UnitPrice,Discount,SellerId) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
          try{
               con = getConnection();
             ps= con.prepareStatement(sql);
-            ps.setInt(1,sid);
-            rs=ps.executeQuery();
-            ps.setInt(1,brandid);
-            ps.setInt(2,vehicleTypeid);
-            ps.setString(3,name);
+            rs=ps.executeQuery();   
+            ps.setInt(1,vehicleTypeid);
+            ps.setString(2,name);
+            ps.setInt(3,brandid);
             ps.setString(4,madein);
             ps.setString(5,manufactureYear);
             ps.setString(6,descript);

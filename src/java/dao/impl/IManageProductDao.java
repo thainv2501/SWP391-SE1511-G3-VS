@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface IManageProductDao {
      public List<Product> getProductBySellerid(int sid);
-     public void AddProduct(int brandid,int vehicleTypeid,String name,
+     public void AddProduct(int vehicleTypeid,String name,int brandid,
                              String madein,String manufactureYear,String descript,
                               String img,int quatity,float price,float discount,
                                int sid);

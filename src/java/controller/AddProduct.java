@@ -88,12 +88,12 @@ public class AddProduct extends HttpServlet {
         String ManufactureYear = request.getParameter("Myear");
         String MadeIn = request.getParameter("madeIn");
         int quantity = Integer.parseInt( request.getParameter("quantity"));
-        HttpSession sess = request.getSession();
-       Account a = (Account) sess.getAttribute("acc");
+//        HttpSession sess = request.getSession();
+  //     Account a = (Account) sess.getAttribute("acc");
  //      int sid = a.getRoleId().getRoleId();
 
        ManageProductDAO manageProductDao = new ManageProductDAO();
-       manageProductDao.AddProduct(brand, vehicletype, name, MadeIn, ManufactureYear, description, image, quantity, price, discount, 2);
+       manageProductDao.AddProduct(vehicletype, name,brand, MadeIn, ManufactureYear, description, image, quantity, price, discount, 2);
 
     }
 
