@@ -69,17 +69,18 @@ public class login extends HttpServlet {
         String contextPath = request.getContextPath();
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
-        response.getWriter().print(user);
         AccountDAO adb = new AccountDAO();
         Account ac = new Account();
         ac.setUsername(user);
         ac.setPassword(pass);
         if (adb.getAccount(ac) != null) {
+            request.setAttribute("Account", null);
             ac = adb.getAccount(ac);
             request.getSession().setAttribute("account", ac);
             response.sendRedirect(contextPath + "/homePage");
         } else {
-            response.getWriter().print("Failed");
+            request.setAttribute("Account", ac);
+            request.getRequestDispatcher("view/login.jsp").forward(request, response);
         }
     }
 

@@ -92,26 +92,26 @@
                     var repass = document.getElementsByName("repass")[0].value;
                     var email = document.getElementsByName("email")[0].value;
                     var dis = document.getElementsByName("dis")[0].value;
-                    if (user == "" || user == null) {
+                    if (user.trim() == "" || user.trim() == null) {
                         alert("Username can't be blank");
                         return false;
                     }
-                    if (pass.length < 6) {
-                        alert("Password must be at least 6 characters long.");
+                    if (pass.trim().length < 6) {
+                        alert("Password must be at least 6 characters long and not blank");
                         return false;
                     }
-                    if (pass != repass) {
+                    if (pass.trim() != repass.trim()) {
                         alert("Repassword must be same!");
                         return false;
                     }
 
                     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                    if (!email.match(regexEmail)) {
+                    if (!email.trim().match(regexEmail)) {
                         alert("email invalid!");
                         return false;
                     }
 
-                    if (dis == "" || dis == null) {
+                    if (dis.trim() == "" || dis.trim() == null) {
                         alert("Displayname can't be blank");
                         return false;
                     }

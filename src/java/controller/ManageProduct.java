@@ -5,13 +5,14 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 2022-04-15      1.0                 QuanTBA          Add field
  */
 package controller;
 
 import dao.BrandDAO;
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import dao.VehicleTypeDAO;
+import dao.impl.IManageProductDao;
 import entity.Account;
 import entity.Brand;
 import entity.Product;
@@ -72,7 +73,7 @@ public class ManageProduct extends HttpServlet {
         HttpSession sess = request.getSession();
        Account a = (Account) sess.getAttribute("acc");
         int id = a.getRoleId().getRoleId();
-       ManageProductDao manageProductDao = new ManageProductDao();
+       IManageProductDao manageProductDao = new ManageProductDAO();
        BrandDAO brandDao = new BrandDAO();
        VehicleTypeDAO vehicleTypeDao = new VehicleTypeDAO();
        

@@ -5,12 +5,12 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 2022-02-15      1.0                 QuanTBA          Add Field
  */
 package controller;
 
 import dao.BrandDAO;
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import dao.VehicleTypeDAO;
 import entity.Brand;
 import entity.Product;
@@ -69,7 +69,7 @@ public class LoadEditProduct extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          int pid = Integer.parseInt(request.getParameter("pid"));
-        ManageProductDao manageproductdao = new ManageProductDao();
+        ManageProductDAO manageproductdao = new ManageProductDAO();
         BrandDAO brandDao = new BrandDAO();
          VehicleTypeDAO vehicleTypeDao = new VehicleTypeDAO();
         Product prod = manageproductdao.getProductByID(pid);

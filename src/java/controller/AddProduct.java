@@ -9,7 +9,7 @@
  */
 package controller;
 
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -92,7 +92,7 @@ public class AddProduct extends HttpServlet {
        Account a = (Account) sess.getAttribute("acc");
        int sid = a.getRoleId().getRoleId();
 
-       ManageProductDao manageProductDao = new ManageProductDao();
+       ManageProductDAO manageProductDao = new ManageProductDAO();
        manageProductDao.AddProduct(brand, vehicletype, name, MadeIn, ManufactureYear, description, image, quantity, price, discount, sid);
 
     }

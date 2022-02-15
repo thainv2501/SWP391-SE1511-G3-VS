@@ -62,11 +62,11 @@ public class AccountDAO extends DBContext {
             return null;
         } finally {
             try {
-                rs.close();
-                ps.close();
+                //rs.close();
+                //ps.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             }
         }
@@ -113,7 +113,7 @@ public class AccountDAO extends DBContext {
                 ps.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return "oke";

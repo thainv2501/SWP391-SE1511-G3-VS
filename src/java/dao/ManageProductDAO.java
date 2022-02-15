@@ -5,7 +5,7 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-02-14      1.0                 QuanTBA          Add Method
+ * 2022-02-15      1.0                 QuanTBA          Add Method
  */
 package dao;
 
@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  * Hiển thị tất cả các sản phẩm của người bán
  * @author QuanTBA
  */
-public class ManageProductDao extends DBContext implements IManageProductDao {
+public class ManageProductDAO extends DBContext implements IManageProductDao {
      Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -37,24 +37,24 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
                    "where SellerId = ?" ;
         
         try{
-            con = new DBContext().getConnection();
+            con = getConnection();
             ps= con.prepareStatement(sql);
             ps.setInt(1,sid);
             rs=ps.executeQuery();
             while(rs.next()){
                 Product p=new Product();
-                p.setId(rs.getInt("id"));
-                p.setBrandId(rs.getInt("brandId"));
+                p.setId(rs.getInt("ProductId"));
+                p.setBrandId(rs.getInt("BrandId"));
                 p.setVehicleTypeId(rs.getInt("vehicleTypeId"));
-                p.setName(rs.getString("name"));
-                p.setMadeIn(rs.getString("madeIn"));
-                p.setManufactureYear(rs.getString("manufactureYear"));
-                p.setDescript(rs.getString("descript"));
-                p.setImg(rs.getString("img"));
-                p.setQuatity(rs.getInt("quatity"));
-                p.setDiscount(rs.getFloat("discount"));
-                p.setImg(rs.getString("img"));
-                p.setSellerId(rs.getInt("sellerId"));
+                p.setName(rs.getString("ProductName"));
+                p.setMadeIn(rs.getString("MadeIn"));
+                p.setManufactureYear(rs.getString("ManufactureYear"));
+                p.setDescript(rs.getString("Description"));
+                p.setImg(rs.getString("Image"));
+                p.setQuatity(rs.getInt("Quantity"));
+                p.setPrice(rs.getFloat("UnitPrice"));
+                p.setDiscount(rs.getFloat("Discount"));               
+                p.setSellerId(rs.getInt("SellerId"));
                 list.add(p);
             }
         }catch(SQLException e){
@@ -70,6 +70,51 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
         return list;
       }
     }
+    
+    // Tìm kiếm sản phẩm theo tên
+    public List<Product> SearchProductByNameForSeller(int sid,String name){
+        List<Product> list=new ArrayList<>();
+        String sql="select * from VehicleShop\n" +
+                   "where SellerId = ?" +
+                   "and ProductName = ?";
+        
+        try{
+            con = getConnection();
+            ps= con.prepareStatement(sql);
+            ps.setInt(1,sid);
+            ps.setString(2, "%"+ name +"%");
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Product p=new Product();
+                p.setId(rs.getInt("ProductId"));
+                p.setBrandId(rs.getInt("BrandId"));
+                p.setVehicleTypeId(rs.getInt("vehicleTypeId"));
+                p.setName(rs.getString("ProductName"));
+                p.setMadeIn(rs.getString("MadeIn"));
+                p.setManufactureYear(rs.getString("ManufactureYear"));
+                p.setDescript(rs.getString("Description"));
+                p.setImg(rs.getString("Image"));
+                p.setQuatity(rs.getInt("Quantity"));
+                p.setPrice(rs.getFloat("UnitPrice"));
+                p.setDiscount(rs.getFloat("Discount"));               
+                p.setSellerId(rs.getInt("SellerId"));
+                list.add(p);
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        } finally{
+            try {
+                ps.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        return list;
+      }
+    }
+    
+    
     //Thêm sản phẩm mới vào trong danh sách
     @Override
     public void AddProduct(int brandid,int vehicleTypeid,String name,
@@ -81,7 +126,7 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
 "(BranId,vehicleTypeId,ProductName,MadeIn,ManufactureYear,Description,Image,Quantity,UnitPrice,Discount,SellerId) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
          try{
-              con = new DBContext().getConnection();
+              con = getConnection();
             ps= con.prepareStatement(sql);
             ps.setInt(1,sid);
             rs=ps.executeQuery();
@@ -118,7 +163,7 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
          String sql="delete from Product\n" +
                     "where ProductId = ?";
          try{
-             con = new DBContext().getConnection();
+             con = getConnection();
             ps=con.prepareStatement(sql);
             ps.setString(1,pid);
             ps.executeUpdate();
@@ -140,7 +185,7 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
           String sql="select * from Product\n" 
         +"where ProductId= ?";
         try{
-            con = new DBContext().getConnection();
+            con = getConnection();
             ps=con.prepareStatement(sql);
             ps.setInt(1,pid);
             rs=ps.executeQuery();
@@ -162,13 +207,13 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
         }catch(SQLException e){
             System.out.println(e);
         } catch (Exception ex) {
-             Logger.getLogger(ManageProductDao.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(ManageProductDAO.class.getName()).log(Level.SEVERE, null, ex);
          } finally{
             try {
                 ps.close();
                 con.close();
             } catch (Exception ex) {
-            Logger.getLogger(ManageProductDao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManageProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
       }
         
@@ -216,5 +261,6 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
             }
       }
     }
-        
+    
+    
 }
