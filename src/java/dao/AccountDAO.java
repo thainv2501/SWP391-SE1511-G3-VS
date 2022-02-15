@@ -32,9 +32,9 @@ import java.util.Vector;
  */
 public class AccountDAO extends DBContext {
 
-/* get account from database ==> return a account coitain : string ussername, string password, string email, 
+    /* get account from database ==> return a account coitain : string ussername, string password, string email, 
     *String status, int rolid,
-     */    
+     */
     public Account getAccount(Account a) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -58,10 +58,9 @@ public class AccountDAO extends DBContext {
                 ac = new Account();
                 ac.setUsername(rs.getString(1));
                 ac.setPassword(rs.getString(2));
-                ac.setDisplayname(rs.getString(3));
             }
         } catch (Exception ex) {
-            System.out.println("Error");
+            System.out.println("Error ");
             return null;
         } finally {
             try {
@@ -77,7 +76,7 @@ public class AccountDAO extends DBContext {
     }
 
     /* insert account from database ==> return a string : "oke" or "not oke"
-     */   
+     */
     public String Insert(Account a) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -89,24 +88,21 @@ public class AccountDAO extends DBContext {
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "INSERT INTO [dbo].[Account]\n"
-                    + "           ([username]\n"
-                    + "           ,[password]\n"
-                    + "           ,[email]\n"
-                    + "           ,[displayname]\n"
-                    + "           ,[status])\n"
+            String sql = "INSERT INTO [dbo].[ACCOUNT]\n"
+                    + "           ([Username]\n"
+                    + "           ,[Password]\n"
+                    + "           ,[Status]\n"
+                    + "           ,[Role])\n"
                     + "     VALUES\n"
                     + "           (?\n"
-                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, a.getUsername());
             ps.setString(2, a.getPassword());
-            ps.setString(3, a.getEmail());
-            ps.setString(4, a.getDisplayname());
-            ps.setString(5, a.getStatus());
+            ps.setString(3, a.getStatus());
+            ps.setInt(4, a.getRoleId().getRoleId());
             ps.executeUpdate();
         } catch (Exception ex) {
             System.out.println("Error");
