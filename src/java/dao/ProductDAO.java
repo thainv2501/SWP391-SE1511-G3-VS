@@ -73,7 +73,7 @@ public class ProductDAO extends DBContext implements IProductDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getFloat(10),
+                        rs.getFloat(10), 
                         rs.getFloat(11),
                         rs.getInt(12)
                 )
