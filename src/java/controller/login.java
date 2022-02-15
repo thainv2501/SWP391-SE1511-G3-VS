@@ -1,11 +1,11 @@
 /*
- * Copyright(C) 2005, G3-VS.
- * Vehicle Store
- *  
+ * Copyright(C) 2021, group 3 SE1511JS
+ * T.NET:
+ *  Vehicle Store
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 2021-02-09      1.0                 levan           Add Field
  */
 package controller;
 
@@ -19,10 +19,8 @@ import dao.AccountDAO;
 import entity.Account;
 /**
  * Lớp này có các phương thức thực hiện truy vấn dữ liệu từ bảng
- * Account. Trong các phương thức seclect của lớp, dữ liệu được chuẩn
- * hóa (loại bỏ dấu cách ở hai đầu) trước khi được gọi vào cơ sở dữ liệu
- * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
- * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
+ * Account.
+ * 
  *
  * @author levan
  */
