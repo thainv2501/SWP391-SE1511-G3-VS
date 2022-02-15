@@ -90,10 +90,10 @@ public class AddProduct extends HttpServlet {
         int quantity = Integer.parseInt( request.getParameter("quantity"));
         HttpSession sess = request.getSession();
        Account a = (Account) sess.getAttribute("acc");
-       int sid = a.getRoleId().getRoleId();
+ //      int sid = a.getRoleId().getRoleId();
 
        ManageProductDAO manageProductDao = new ManageProductDAO();
-       manageProductDao.AddProduct(brand, vehicletype, name, MadeIn, ManufactureYear, description, image, quantity, price, discount, sid);
+       manageProductDao.AddProduct(brand, vehicletype, name, MadeIn, ManufactureYear, description, image, quantity, price, discount, 2);
 
     }
 

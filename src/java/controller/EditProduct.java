@@ -89,11 +89,11 @@ public class EditProduct extends HttpServlet {
         String type = request.getParameter("type");
         String manufactureyear = request.getParameter("Myear");
         String madein = request.getParameter("MadeIn");
-        String productid = request.getParameter("productid");
+         int pid = Integer.parseInt(request.getParameter("productid"));
         String quantity = request.getParameter("quantity");
         
         ManageProductDAO manageProductDao = new ManageProductDAO();
-        manageProductDao.EditProduct(brand, type, name,madein , manufactureyear, description, image, quantity, price, discount, productid);
+        manageProductDao.EditProduct(brand, type, name,madein , manufactureyear, description, image, quantity, price, discount, pid);
         response.sendRedirect("manageproduct");
     }
 

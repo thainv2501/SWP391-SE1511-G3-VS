@@ -26,7 +26,7 @@ public interface IManageProductDao {
      public Product getProductByID(int pid);
       public void EditProduct(String Branid,String vehicleTypeId,String name,
                               String MadeIn,String manufactureYear,String description,
-                              String image,String quantity,String price ,String discount,String id);
+                              String image,String quantity,String price ,String discount,int id);
        public List<Product> SearchProductByNameForSeller(int sid,String name);
 
 }

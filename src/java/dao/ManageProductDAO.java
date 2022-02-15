@@ -224,7 +224,7 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
    
 //Chỉnh sửa thông tin sản phẩm dựa trên id sản phẩm đó
     @Override
-    public void EditProduct(String Branid, String vehicleTypeId, String name, String MadeIn, String manufactureYear, String description, String image, String quantity, String price, String discount, String id) {
+    public void EditProduct(String Branid, String vehicleTypeId, String name, String MadeIn, String manufactureYear, String description, String image, String quantity, String price, String discount, int id) {
          String sql= "update Product\n" +
 "set  BrandId = ?,\n" +
 "     vehicleTypeId = ?,\n" +
@@ -235,7 +235,7 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
 "     Image = ?,\n" +
 "     Quantity = ?,\n" +
 "     UnitPrice = ?,\n" +
-"     Discount = ?,\n" +
+"     Discount = ? \n" +
 "	where ProductId = ?";
          try{
             ps=con.prepareStatement(sql);
@@ -249,7 +249,7 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
             ps.setString(8,quantity);
             ps.setString(9,price);
             ps.setString(10,discount);
-            ps.setString(11,id);
+            ps.setInt(11,id);
             ps.executeUpdate();
          }catch(Exception e){
              System.out.println(e);  
@@ -270,4 +270,6 @@ public class ManageProductDAO extends DBContext implements IManageProductDao {
        
             System.out.println(list.get(0).getName());
     }
+
+   
 }
