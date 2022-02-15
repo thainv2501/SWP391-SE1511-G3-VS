@@ -69,12 +69,10 @@ public class login extends HttpServlet {
         String contextPath = request.getContextPath();
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
-//        response.getWriter().print(user);
         AccountDAO adb = new AccountDAO();
         Account ac = new Account();
         ac.setUsername(user);
         ac.setPassword(pass);
-        response.getWriter().print(pass);
         if (adb.getAccount(ac) != null) {
             request.setAttribute("Account", null);
             ac = adb.getAccount(ac);
