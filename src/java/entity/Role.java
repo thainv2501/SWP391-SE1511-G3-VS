@@ -24,6 +24,10 @@ public class Role {
         this.roleName = roleName;
     }
 
+    public Role(int roleId) {
+        this.roleId = roleId;
+    }
+    
     public Role() {
     }
 
