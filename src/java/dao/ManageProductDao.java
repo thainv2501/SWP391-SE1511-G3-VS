@@ -26,18 +26,18 @@ import java.util.logging.Logger;
  * @author QuanTBA
  */
 public class ManageProductDao extends DBContext implements IManageProductDao {
+     Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
     //Lấy danh sách các sản phẩm theo ID của người bán
     @Override
     public List<Product> getProductBySellerid(int sid){
-       Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
         List<Product> list=new ArrayList<>();
         String sql="select * from VehicleShop\n" +
                    "where SellerId = ?" ;
         
         try{
-            con = getConnection();
+            con = new DBContext().getConnection();
             ps= con.prepareStatement(sql);
             ps.setInt(1,sid);
             rs=ps.executeQuery();
@@ -76,14 +76,12 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
                              String madein,String manufactureYear,String descript,
                               String img,int quatity,float price,float discount,
                                int sid){
-         Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+       
          String sql="insert VehicleShop\n" +
 "(BranId,vehicleTypeId,ProductName,MadeIn,ManufactureYear,Description,Image,Quantity,UnitPrice,Discount,SellerId) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
          try{
-              con = getConnection();
+              con = new DBContext().getConnection();
             ps= con.prepareStatement(sql);
             ps.setInt(1,sid);
             rs=ps.executeQuery();
@@ -116,11 +114,11 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
 
     @Override
      public void deleteProduct(String pid) {
-        Connection con = null;
-        PreparedStatement ps = null;
+        
          String sql="delete from Product\n" +
                     "where ProductId = ?";
          try{
+             con = new DBContext().getConnection();
             ps=con.prepareStatement(sql);
             ps.setString(1,pid);
             ps.executeUpdate();
@@ -137,13 +135,11 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
     }
 
     @Override
-    public Product getProductByID(int pid) {
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+    public Product getProductByID(int pid) {   
           String sql="select * from Product\n" 
         +"where ProductId= ?";
         try{
+            con = new DBContext().getConnection();
             ps=con.prepareStatement(sql);
             ps.setInt(1,pid);
             rs=ps.executeQuery();
@@ -164,13 +160,15 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
             }
         }catch(SQLException e){
             System.out.println(e);
-        }finally{
+        } catch (Exception ex) {
+             Logger.getLogger(ManageProductDao.class.getName()).log(Level.SEVERE, null, ex);
+         } finally{
             try {
                 ps.close();
                 con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            } catch (Exception ex) {
+            Logger.getLogger(ManageProductDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
       }
         
         return null;
