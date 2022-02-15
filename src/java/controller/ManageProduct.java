@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
+ *Hiển thị 1 vài thông tin về các sản phẩm của người bán
  * @author Acer
  */
 public class ManageProduct extends HttpServlet {

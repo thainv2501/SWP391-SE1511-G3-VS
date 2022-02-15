@@ -70,7 +70,7 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
         return list;
       }
     }
-    
+    //Thêm sản phẩm mới vào trong danh sách
     @Override
     public void AddProduct(int brandid,int vehicleTypeid,String name,
                              String madein,String manufactureYear,String descript,
@@ -111,7 +111,7 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
             }
       }
      }
-
+    //Xoá sản phẩm theo id sản phẩm
     @Override
      public void deleteProduct(String pid) {
         
@@ -133,7 +133,8 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
             }
       }
     }
-
+     
+//Hiển thị thông tin sản phẩm dựa trên id sản phẩm
     @Override
     public Product getProductByID(int pid) {   
           String sql="select * from Product\n" 
@@ -174,12 +175,9 @@ public class ManageProductDao extends DBContext implements IManageProductDao {
         return null;
     }
    
-
+//Chỉnh sửa thông tin sản phẩm dựa trên id sản phẩm đó
     @Override
     public void EditProduct(String Branid, String vehicleTypeId, String name, String MadeIn, String manufactureYear, String description, String image, String quantity, String price, String discount, String id) {
-         Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
          String sql= "update Product\n" +
 "set  BrandId = ?,\n" +
 "     vehicleTypeId = ?,\n" +

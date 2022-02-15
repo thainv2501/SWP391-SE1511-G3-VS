@@ -24,7 +24,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Lấy và hiển thị thông tin sản phẩm từ database
+ * Thông tin chi tiết sản phẩm có thể được sửa đổi  
  * @author QuanTBA <your.name at your.org>
  */
 public class LoadEditProduct extends HttpServlet {
