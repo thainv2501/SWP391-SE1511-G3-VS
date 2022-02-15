@@ -154,9 +154,8 @@ public class ProductDAO extends DBContext implements IProductDAO {
     ==> return a list of product coitain : int id, int brandId, int vehicleTypeId, 
     *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
      */
-    
     @Override
-    public Vector<Product> getAllProductsWithCondition(int vtid, int brandId, String sort) {
+    public Vector<Product> getAllProductsWithCondition(int vtid, int brandId, String keyWord, String sort) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -169,50 +168,64 @@ public class ProductDAO extends DBContext implements IProductDAO {
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "SELECT * from Product"
-                    + " where vehicleTypeId = ? "
-                    + "order by ManufactureYear desc";
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, vtid);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                vec.add(new Product(rs.getInt(1),
-                        rs.getInt(2),
-                        rs.getInt(3),
-                        rs.getString(4),
-                        rs.getString(5),
-                        rs.getString(6),
-                        rs.getString(7),
-                        rs.getString(8),
-                        rs.getInt(9),
-                        rs.getFloat(10),
-                        rs.getFloat(11),
-                        rs.getInt(12)
-                )
-                );
-            }
-        } catch (Exception ex) {
-            System.out.println("Error");
-        } finally {
-            try {
-                rs.close();
-                ps.close();
-                con.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            String sql = "select * from Product \n"
+                    + "where vehicleTypeId = ? \n";
+            if(brandId != 0){
+                sql += " and BrandId = " + brandId ;
+            } 
+                    sql += " and ProductName like '%"+keyWord+"%' \n"
+                            + "order by " + sort;
+                    
+        
+        ps = con.prepareStatement(sql);
+        
+        ps.setInt(1, vtid);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            vec.add(new Product(rs.getInt(1),
+                    rs.getInt(2),
+                    rs.getInt(3),
+                    rs.getString(4),
+                    rs.getString(5),
+                    rs.getString(6),
+                    rs.getString(7),
+                    rs.getString(8),
+                    rs.getInt(9),
+                    rs.getFloat(10),
+                    rs.getFloat(11),
+                    rs.getInt(12)
+            )
+            );
         }
-        return vec;
+    }
+    catch (Exception ex) {
+            System.out.println("Error");
     }
 
-    public static void main(String[] args) {
-        ProductDAO dao = new ProductDAO();
-        Vector<Product> vec = dao.getAllProductsByVehicleTypeId(1);
-        for (Product brand : vec) {
-            System.out.println(brand);
+        finally {
+            try {
+            rs.close();
+            ps.close();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Vector<Product> vec2 = dao.getAllProductsByVehicleTypeId(2);
-        for (Product brand : vec2) {
+    }
+    return vec ;
+}
+
+public static void main(String[] args) {
+        ProductDAO dao = new ProductDAO();
+//        Vector<Product> vec = dao.getAllProductsByVehicleTypeId(1);
+//        for (Product brand : vec) {
+//            System.out.println(brand);
+//        }
+//        Vector<Product> vec2 = dao.getAllProductsByVehicleTypeId(2);
+//        for (Product brand : vec2) {
+//            System.out.println(brand);
+//        }
+        Vector<Product> vec3 = dao.getAllProductsWithCondition(1,2,"a","ManufactureYear desc");
+        for (Product brand : vec3) {
             System.out.println(brand);
         }
     }

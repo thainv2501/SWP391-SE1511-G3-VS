@@ -22,19 +22,17 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
- * Product. Trong các phương thức update or insert của lớp, dữ liệu được chuẩn
- * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
- * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
- * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
+ * Product.
+ * Đông thời hiện thị các danh mục và các hãng xe cho chức năng search
+ * @Brand : brandName ,BrandId
+ * 
  *
  * @author Nguyen Viet Thai
  */
 /**
  * The class contains method find, update, delete, insert Product information
- * from Product table in database. In the update or insert method, all data will
- * be normalized (trim space) before update/insert into database The method wil
- * throw an object of java.lang.Exception class if there is any error occurring
- * when finding, inserting, or updating data
+ * from Product table in database. 
+ * 
  * <p>
  * Bugs:
  *
@@ -55,16 +53,7 @@ public class productList extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet productList</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet productList at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+         
         }
     }
 
@@ -94,7 +83,8 @@ public class productList extends HttpServlet {
             Vector<Product> allMoto = (Vector<Product>) ses.getAttribute("allMoto");
             ses.setAttribute("availableProduct", allMoto);
         }
-        
+        ses.setAttribute("selectedBrand", 0);
+        ses.setAttribute("sortOp", "ManufactureYear desc");
         ses.setAttribute("vtid", vtid);
         ses.setAttribute("vtName", vtName);
         request.getRequestDispatcher("view/productList.jsp").forward(request, response);

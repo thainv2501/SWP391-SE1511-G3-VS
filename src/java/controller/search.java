@@ -9,6 +9,7 @@
  */
 package controller;
 
+import dao.ProductDAO;
 import entity.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
+ * lớp này trích xuất data từ data theo dữ liệu được lấy từ form search từ
+ * productList
  *
- * @author taola
+ * @author ThaiNV
  */
 public class search extends HttpServlet {
 
@@ -38,16 +41,7 @@ public class search extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet search</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet search at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
         }
     }
 
@@ -78,24 +72,22 @@ public class search extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        String keyWord = request.getParameter("keyWord").trim();
         HttpSession ses = request.getSession();
-        Vector<Product> availableProduct = new Vector<>();
-        if ((int) ses.getAttribute("vtid") == 1) {
-            availableProduct = (Vector<Product>) ses.getAttribute("allCar");
-        } else {
-            availableProduct = (Vector<Product>) ses.getAttribute("allMoto");
-
+        ProductDAO productDAO = new ProductDAO();
+        String keyWord = request.getParameter("keyWord").trim();
+        if(keyWord == null){
+            keyWord = "";
         }
+        int brandId = Integer.parseInt(request.getParameter("brand"));
+        int vtid = (int) ses.getAttribute("vtid");
+        String sort = request.getParameter("sort");
+        
 
-        Vector<Product> allProductByKeyWord = new Vector<>();
-        for (Product product : availableProduct) {
-            if (product.getName().toLowerCase().contains(keyWord.toLowerCase())) {
-                allProductByKeyWord.add(product);
-            }
-        }
+        Vector<Product> availableProduct = productDAO.getAllProductsWithCondition(vtid, brandId, keyWord, sort);
+        ses.setAttribute("selectedBrand", brandId);
+        ses.setAttribute("sortOp", sort);
         ses.setAttribute("keyWord", keyWord);
-        ses.setAttribute("availableProduct", allProductByKeyWord);
+        ses.setAttribute("availableProduct",availableProduct);
         request.getRequestDispatcher("view/productList.jsp").forward(request, response);
     }
 

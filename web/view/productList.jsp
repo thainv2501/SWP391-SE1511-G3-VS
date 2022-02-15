@@ -41,19 +41,21 @@
                 <p class="m-2 border-bottom text-center">Search and filter </p>
                 <form action="search" method="post">
                     <div class="input-group mb-3 ">
-                        <input type="text" class="form-control" name="keyWord" placeholder="Key word" required="true" value="${keyWord}" pattern=".{0,50}" title="can not over 50 char" >
+                        <input type="text" class="form-control" name="keyWord" placeholder="Key word"  value="${keyWord}" pattern=".{0,50}" title="can not over 50 char" >
                     </div>
 
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected value="all">Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="form-select" name="sort" aria-label="Default select example">
+                        <option ${sortOp=="ManufactureYear desc"?"selected":""} value="ManufactureYear desc">Newest</option>
+                        <option ${sortOp=="ManufactureYear"?"selected":""} value="ManufactureYear">Oldest</option>
+                        <option ${sortOp=="UnitPrice desc"?"selected":""} value="UnitPrice desc">Highest Price</option>
+                        <option ${sortOp=="UnitPrice"?"selected":""} value="UnitPrice">Lowest Price</option>
                     </select>
                     <div class="brand-category border border-dark m-2 rounded">
                         <ul >
                             <li ><h6 class="dropdown-header border-bottom">Brand</h6></li>
-                            <c:forEach items="${allBrand}" var="b"><li class=""> <input type="radio" class="btn-check" name="brand" id="${b.id}" value="${b.id}">
+                            <li class=""> <input type="radio" class="btn-check" name="brand" id="0" value="0" ${selectedBrand==0?"checked":""}>
+                            <label class="btn btn-outline-secondary w-100" for="0">All Brand</label></li>
+                            <c:forEach items="${allBrand}" var="b"><li class=""> <input type="radio" class="btn-check" name="brand" id="${b.id}" value="${b.id}" ${selectedBrand==b.id?"checked":""}>
                             <label class="btn btn-outline-secondary w-100" for="${b.id}">${b.name}</label></li></c:forEach>
                             </ul>
                         </div>

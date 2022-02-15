@@ -34,5 +34,5 @@ public interface IProductDAO {
     ==> return a list of product coitain : int id, int brandId, int vehicleTypeId, 
     *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
      */
-    public Vector<Product> getAllProductsWithCondition(int vtid,int brandId,String sort) ;
+    public Vector<Product> getAllProductsWithCondition(int vtid,int brandId,String keyWord,String sort) ;
 }
