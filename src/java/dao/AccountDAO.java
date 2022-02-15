@@ -21,8 +21,20 @@ import java.util.Vector;
  *
  * @author levan
  */
-public class AccountDao extends DBContext {
+/**
+ * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
+ * Account. Trong các phương thức select or insert của lớp, dữ liệu được chuẩn
+ * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
+ * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
+ * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
+ *
+ * @author levan
+ */
+public class AccountDAO extends DBContext {
 
+/* get account from database ==> return a account coitain : string ussername, string password, string email, 
+    *String status, int rolid,
+     */    
     public Account getAccount(Account a) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -61,6 +73,8 @@ public class AccountDao extends DBContext {
         return ac;
     }
 
+    /* insert account from database ==> return a string : "oke" or "not oke"
+     */   
     public String Insert(Account a) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -100,7 +114,6 @@ public class AccountDao extends DBContext {
                 con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
-                return "not oke";
             }
         }
         return "oke";

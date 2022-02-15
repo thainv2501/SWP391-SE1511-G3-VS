@@ -15,7 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.AccountDao;
+import dao.AccountDAO;
 import entity.Account;
 /**
  * Lớp này có các phương thức thực hiện truy vấn dữ liệu từ bảng
@@ -72,7 +72,7 @@ public class login extends HttpServlet {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         response.getWriter().print(user);
-        AccountDao adb = new AccountDao();
+        AccountDAO adb = new AccountDAO();
         Account ac = new Account();
         ac.setUsername(user);
         ac.setPassword(pass);
