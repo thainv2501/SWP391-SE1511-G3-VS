@@ -80,7 +80,7 @@ public class LoadEditProduct extends HttpServlet {
          request.setAttribute("vehicleType", listvehicleType);
          request.setAttribute("brand", listbrand);
         request.setAttribute("product", prod);
-        request.getRequestDispatcher("Edit.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Edit.jsp").forward(request, response);
     }
 
     /**

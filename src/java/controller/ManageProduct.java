@@ -83,7 +83,7 @@ public class ManageProduct extends HttpServlet {
        request.setAttribute("vehicleType", listvehicleType);
        request.setAttribute("brand", listbrand);
        request.setAttribute("product", listproduct);
-       request.getRequestDispatcher("ManageProduct.jsp").forward(request, response);
+       request.getRequestDispatcher("view/ManageProduct.jsp").forward(request, response);
 
     }
 
