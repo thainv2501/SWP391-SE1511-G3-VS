@@ -96,8 +96,8 @@
 
                                     </section>
                                     <div class="mt-auto">
-                                        <button type="button" class="btn btn-outline-secondary m-2"> <a href="#"></a>See more >> </button>
-                                        <button type="button" class="btn btn-outline-secondary"> <a href="#"></a><i class="bi bi-cart-plus-fill"></i></button>
+                                        <button type="button" class="btn" > <a class="btn btn-outline-secondary " href="productDetail?pid=${p.id}">Detail</a></button>
+                                        <button type="button" class="btn" > <a class="btn btn-outline-secondary  " ><i class="bi bi-cart-plus-fill"></i></a></button>
                                     </div>
 
                                 </div>
