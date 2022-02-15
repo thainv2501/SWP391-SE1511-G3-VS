@@ -5,7 +5,7 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 TUNGNQ           First Implement
+ * 16-02-2022      1.0                 TUNGNQ           First Implement
  */
 package controller;
 
@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.impl.IManageAccountDAO;
 
 /**
+ * tìm kiếm tài khoản theo vai trò và id người dùng
  *
  * @author nqt26
  */
@@ -63,7 +64,16 @@ public class ManageAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            int roleId = Integer.parseInt(request.getParameter("roleId").trim());
+            int id = Integer.parseInt(request.getParameter("id").trim());
+            IManageAccountDAO manageacountdao = new ManageAccountDAO();
+            Account account = manageacountdao.searchAccount(roleId, id);
+            request.setAttribute("account", account);
+            request.getRequestDispatcher("view/ManageAccount.jsp").forward(request, response);
+        } catch (NullPointerException npt) {
+            response.sendRedirect("login");
+        }
     }
 
     /**
@@ -77,10 +87,7 @@ public class ManageAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int roleId = Integer.parseInt(request.getParameter("roleId"));
-        int id = Integer.parseInt(request.getParameter("id"));
-        IManageAccountDAO manageacountdao = new ManageAccountDAO();
-        Account account = manageacountdao.searchAccount(roleId, id);
+        processRequest(request, response);
     }
 
     /**

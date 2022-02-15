@@ -14,7 +14,7 @@ import entity.Role;
 import java.util.List;
 
 /**
- * Chứa lớp interface của quản lí tài khoản người dùng
+ * Chứa lớp interface quản lí tài khoản người dùng
  * @author nqt26
  */
 public interface IManageAccountDAO {

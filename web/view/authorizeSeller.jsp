@@ -15,9 +15,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Home Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!--css link --!>
         <link rel="stylesheet" href="css/style.css" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
             crossorigin="anonymous"
@@ -29,7 +29,12 @@
         <!-- navbar dung chung -->
         <jsp:include page="navbar.jsp"></jsp:include>
         <div class="container-fluid">
-
+        <div class="row">
+                    <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Transaction</b></a></div>
+                    <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Report</b></a></div>
+                    <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Account</b></a></div>
+                    <div class="col-sm-3"><a class="link-dark" href="#">Authorize <b>Seller</b></a></div>
+        </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -50,7 +55,7 @@
                         <td>${s.gmail}</td>
                         <td>${s.phone}</td>
                         <td><button type="button" class="btn btn-secondary" ><a href="authorizeSeller?id=${s.sellerId}">Accept</a></button>&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-secondary" ><a href="deleteAccount?username=${s.username.username}">Deny</a></button></td>
+                            <button type="button" class="btn btn-secondary" ><a href="deleteSellerAccount?username=${s.username.getusername()}">Deny</a></button></td>
                     </tr>
                     </c:forEach>
                 </tbody>

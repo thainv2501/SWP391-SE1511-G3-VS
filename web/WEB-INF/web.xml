@@ -52,6 +52,10 @@
         <servlet-name>productDetail</servlet-name>
         <servlet-class>controller.productDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteSellerAccountServlet</servlet-name>
+        <servlet-class>controller.DeleteSellerAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>productDetail</servlet-name>
         <url-pattern>/productDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSellerAccountServlet</servlet-name>
+        <url-pattern>/deleteSellerAccount</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
