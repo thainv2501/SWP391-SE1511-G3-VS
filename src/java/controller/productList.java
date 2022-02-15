@@ -85,8 +85,8 @@ public class productList extends HttpServlet {
         }
         ses.setAttribute("selectedBrand", 0);
         ses.setAttribute("sortOp", "ManufactureYear desc");
-        ses.setAttribute("vtid", vtid);
-        ses.setAttribute("vtName", vtName);
+        request.setAttribute("vtid", vtid);
+        request.setAttribute("vtName", vtName);
         request.getRequestDispatcher("view/productList.jsp").forward(request, response);
     }
 

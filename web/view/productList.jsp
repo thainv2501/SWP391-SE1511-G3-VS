@@ -30,16 +30,18 @@
             <!-- search sort filter -->
             <div class="row w-100">
                 <div class="col search sort filter  ">
-                    <div class="d-flex flex-row">
-                        <button type="button" class="btn col-6 " > <a class="btn btn-outline-secondary w-100 ${vtid==1?"active":""} " href="productList?vtid=1&&vtname=Car">Car</a></button>
-                    <button type="button" class="btn col-6 " > <a class="btn btn-outline-secondary w-100 ${vtid==2?"active":"" } " href="productList?vtid=2&&vtname=Moto">Moto</a></button>     
+                    <form action="search" method="post">
+                        <div class="d-flex flex-row">
+                            <input type="radio" class="btn-check" name="vtid" id="vtid1" value="1" ${vtid==1?"checked":""}>
+                        <label class="btn btn-outline-secondary w-100" for="vtid1">Car</label>
+                        <input type="radio" class="btn-check" name="vtid" id="vtid2" value="2" ${vtid==2?"checked":""}>
+                        <label class="btn btn-outline-secondary w-100" for="vtid2">Moto</label>
+                    </div>
 
-                </div>
 
 
+                    <p class="m-2 border-bottom text-center">Search and filter </p>
 
-                <p class="m-2 border-bottom text-center">Search and filter </p>
-                <form action="search" method="post">
                     <div class="input-group mb-3 ">
                         <input type="text" class="form-control" name="keyWord" placeholder="Key word"  value="${keyWord}" pattern=".{0,50}" title="can not over 50 char" >
                     </div>
@@ -54,14 +56,16 @@
                         <ul >
                             <li ><h6 class="dropdown-header border-bottom">Brand</h6></li>
                             <li class=""> <input type="radio" class="btn-check" name="brand" id="0" value="0" ${selectedBrand==0?"checked":""}>
-                            <label class="btn btn-outline-secondary w-100" for="0">All Brand</label></li>
+                                <label class="btn btn-outline-secondary w-100" for="0">All Brand</label></li>
                             <c:forEach items="${allBrand}" var="b"><li class=""> <input type="radio" class="btn-check" name="brand" id="${b.id}" value="${b.id}" ${selectedBrand==b.id?"checked":""}>
-                            <label class="btn btn-outline-secondary w-100" for="${b.id}">${b.name}</label></li></c:forEach>
+                                    <label class="btn btn-outline-secondary w-100" for="${b.id}">${b.name}</label></li></c:forEach>
                             </ul>
                         </div>
-                     <button class="btn btn-outline-secondary w-100" type="submit" >GO!!!!</button>
+                        <button class="btn btn-outline-secondary w-100" type="submit" >GO!!!!</button>
                     </form>
                 </div>
+
+
                 <!-- start list -->
                 <div class="col-10 newest-moto-product bg-dark text-light">
                     <h3 class=" text-center text-light pt-5 border-bottom"> ${vtName} Product</h3>

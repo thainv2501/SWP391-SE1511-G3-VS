@@ -79,11 +79,17 @@ public class search extends HttpServlet {
             keyWord = "";
         }
         int brandId = Integer.parseInt(request.getParameter("brand"));
-        int vtid = (int) ses.getAttribute("vtid");
+        int vtid = Integer.parseInt(request.getParameter("vtid"));
+        if(vtid==1){
+            request.setAttribute("vtName", "Car");
+        }else{
+            request.setAttribute("vtName", "Moto");
+        }
         String sort = request.getParameter("sort");
         
 
         Vector<Product> availableProduct = productDAO.getAllProductsWithCondition(vtid, brandId, keyWord, sort);
+        request.setAttribute("vtid", vtid);
         ses.setAttribute("selectedBrand", brandId);
         ses.setAttribute("sortOp", sort);
         ses.setAttribute("keyWord", keyWord);
