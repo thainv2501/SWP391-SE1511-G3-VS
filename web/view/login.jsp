@@ -25,7 +25,7 @@
                 </div>
                 <p <c:if test = "${Account == null}">
                         style="display:none;"
-                    </c:if>> Your account or password already exists! Please create another</p>
+                    </c:if>> Your account or password wrong! Please reenter</p>
                 <div class="form-group">
                     <input type="text" class="form-control item" name="username" placeholder="Username"
                            <c:choose>
