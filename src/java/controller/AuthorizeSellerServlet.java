@@ -10,23 +10,22 @@
 package controller;
 
 import dao.AuthorizeSellerdao;
-import entity.Product;
 import entity.Seller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Vector;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * cập nhật dữ liệu từ trong database đến bảng seller chưa được đăng kí Trong
- * quá trình hoạt động nếu gặp null pointer exception sẽ được đưa về trang login
+ * Các phương thức sẽ trả về một đối tượng của lớp
+ * <code>javax.servlet.ServletException</code> khi có bất cứ lỗi nào xảy ra trong quá trình
+ * truy vấn, cập nhật dữ liệu
  * <p>
- * Bug
+ * Bug:
  *
  * @author nqt26
  */
@@ -72,13 +71,13 @@ public class AuthorizeSellerServlet extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         try {
-            request.setCharacterEncoding("UTF-8"); // chạy được tiếng việt
+            request.setCharacterEncoding("UTF-8"); // hiển thị tiếng việt
             AuthorizeSellerdao authorizeSellerdao = new AuthorizeSellerdao();
             List<Seller> listSeller = authorizeSellerdao.getInactiveSellerAccount();
             request.setAttribute("seller", listSeller);
             request.getRequestDispatcher("view/AuthorizeSeller.jsp").forward(request, response);
         } catch (NullPointerException e) {
-            response.sendRedirect("view/login");
+            response.sendRedirect("login");
         }
 
     }
@@ -94,7 +93,11 @@ public class AuthorizeSellerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try{
+            request.getAttribute("username");
+        } catch (NullPointerException npt) {
+            response.sendRedirect("login");
+        }
     }
 
     /**

@@ -15,7 +15,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Home Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="main.js"></script>
         <link rel="stylesheet" href="css/style.css" />
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -43,20 +42,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requestScope.seller}" var="o">
+                    <c:forEach items="${requestScope.seller}" var="s">
                     <tr>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
+                        <td>${s.sellerName}</td>
+                        <td>${s.description}</td>
+                        <td>${s.address}</td>
+                        <td>${s.gmail}</td>
+                        <td>${s.phone}</td>
+                        <td><button type="button" class="btn btn-secondary" ><a href="authorizeSeller?id=${s.sellerId}">Accept</a></button>&nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-secondary" ><a href="deleteAccount?username">Deny</a></button></td>
                     </tr>
                     </c:forEach>
                 </tbody>
             </table>
 </div>
 <!-- script link -->
+<script src="main.js"></script>
 <script src="myjs.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
