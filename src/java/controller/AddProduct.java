@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- *
- * @author Acer
+ *Thêm thông tin 1 sản phẩm mới vào trong database đồng thời hiển thị trong
+ * danh sách sản phẩm của người bán
+ * @author QuanTBA
  */
 public class AddProduct extends HttpServlet {
 

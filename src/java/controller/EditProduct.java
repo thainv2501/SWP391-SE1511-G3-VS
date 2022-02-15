@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ *Chỉnh sửa thông tin sản phẩm được lấy từ database
+ * Hiển thị thông tin mới của sản phẩm trong database và danh sách sản phẩm
+ * của người bán
  * @author QuanTBA <your.name at your.org>
  */
 public class EditProduct extends HttpServlet {

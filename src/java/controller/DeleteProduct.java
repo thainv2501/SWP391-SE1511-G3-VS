@@ -5,7 +5,7 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 2022-02-15      1.0                 QuanTBA          Add Feild
  */
 package controller;
 
@@ -18,8 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author QuanTBA <your.name at your.org>
+ *Xoá toàn bộ thông tin sản phẩm khỏi database và danh sách
+ * sản phẩm của người bán
+ * @author QuanTBA 
  */
 public class DeleteProduct extends HttpServlet {
 
