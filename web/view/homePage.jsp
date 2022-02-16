@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Home Page</title>
+        <title>Vehicle Store</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script src="main.js"></script>
         <link rel="stylesheet" href="css/style.css" />
@@ -142,7 +142,7 @@
             </div>
             <!-- end newest Car product -->
              <div class="newest-car-product bg-dark text-light">
-                <h3 class="bg-secondery text-center pt-4">Newest Car Product</h3>
+                <h3 class="bg-secondery text-center pt-4">Newest Moto Product</h3>
                 <br>
                 <div class="p-5">
                     <div class="row gy-5">

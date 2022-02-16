@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>Home page</title>
+        <title>Vehicle Store</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="css/style.css" />
         <link
@@ -110,18 +110,18 @@
                 </div>
 
                 <!-- paging -->
+                <c:if test="${numberOfPage != 0}">
                 <div class="pt-3 d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <c:forEach begin="1" end="${numberOfPage}" var="index"><li class="page-item ${index==pi?"active":""} "><a class="page-link " href="productList?pi=${index}">${index}</a></li></c:forEach>
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
 
                 </div>
+                </c:if>
             </div>
         </div>
     </div>

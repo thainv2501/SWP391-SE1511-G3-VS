@@ -62,7 +62,6 @@ public class homePage extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        
         HttpSession ses = request.getSession();
         IProductDAO productDao = new ProductDAO();
         VehicleTypeDAO vehicleTypeDao = new VehicleTypeDAO();

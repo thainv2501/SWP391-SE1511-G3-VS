@@ -73,28 +73,19 @@ public class search extends HttpServlet {
             throws ServletException, IOException {
         //processRequest(request, response);
         HttpSession ses = request.getSession();
-        ProductDAO productDAO = new ProductDAO();
         String keyWord = request.getParameter("keyWord").trim();
         if(keyWord == null){
             keyWord = "";
         }
         int brandId = Integer.parseInt(request.getParameter("brand"));
         int vtid = Integer.parseInt(request.getParameter("vtid"));
-        if(vtid==1){
-            request.setAttribute("vtName", "Car");
-        }else{
-            request.setAttribute("vtName", "Moto");
-        }
-        String sort = request.getParameter("sort");
         
-
-        Vector<Product> availableProduct = productDAO.getAllProductsWithCondition(vtid, brandId, keyWord, sort);
-        request.setAttribute("vtid", vtid);
+        String sort = request.getParameter("sort");
+        ses.setAttribute("vtid", vtid);
         ses.setAttribute("selectedBrand", brandId);
         ses.setAttribute("sortOp", sort);
         ses.setAttribute("keyWord", keyWord);
-        ses.setAttribute("availableProduct",availableProduct);
-        request.getRequestDispatcher("view/productList.jsp").forward(request, response);
+        request.getRequestDispatcher("productList").forward(request, response);
     }
 
     /**

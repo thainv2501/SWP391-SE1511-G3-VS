@@ -50,4 +50,14 @@ public interface IProductDAO {
     *String name, String madeIn, String ManufactureYear, String descript, String img, int quatity, float price, float discount, int sellerId
      */
     public Vector<Product> getAllProductsWithCondition(int vtid,int brandId,String keyWord,String sort) ;
+    
+    
+    /* get the number of page base on all product in database
+     */
+     public int getNumberOfPage(int vtid, int brandId, String keyWord);
+     
+     
+     /* get the Product in page number base on all product in database
+     */
+     public Vector<Product> getProductInPage(int index,int vtid, int brandId, String keyWord, String sort);
 }

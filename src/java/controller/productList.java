@@ -22,17 +22,17 @@ import javax.servlet.http.HttpSession;
 
 /**
  * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
- * Product.
- * Đông thời hiện thị các danh mục và các hãng xe cho chức năng search
+ * Product. Đông thời hiện thị các danh mục và các hãng xe cho chức năng search
+ *
  * @Brand : brandName ,BrandId
- * 
+ *
  *
  * @author Nguyen Viet Thai
  */
 /**
  * The class contains method find, update, delete, insert Product information
- * from Product table in database. 
- * 
+ * from Product table in database.
+ *
  * <p>
  * Bugs:
  *
@@ -53,7 +53,58 @@ public class productList extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-         
+ ProductDAO productDAO = new ProductDAO();
+        HttpSession ses = request.getSession();
+
+        int vtid = 0;
+        int brandId = 0;
+        String vtName = "";
+        String keyWord = "";
+        String sort = "";
+        if (request.getParameter("vtid") != null) {
+            vtid = Integer.parseInt(request.getParameter("vtid"));
+        } else {
+            vtid = (int) ses.getAttribute("vtid");
+        }
+        if(request.getParameter("vtname")!=null){
+            vtName =(String) request.getParameter("vtname");
+        }else{
+            vtName = (String)ses.getAttribute("vtName");
+        }
+
+        int pi = 1;
+        if (request.getParameter("pi") != null) {
+            pi = Integer.parseInt(request.getParameter("pi"));
+        }
+        if (ses.getAttribute("selectedBrand") == null) {
+            brandId = 0;
+        } else {
+            brandId = (int) ses.getAttribute("selectedBrand");
+        }
+        if(ses.getAttribute("sortOp")==null){
+            sort = "ManufactureYear desc";
+        }else{
+            sort = (String)ses.getAttribute("sortOp");
+        }
+        if(ses.getAttribute("keyWord")==null){
+            keyWord = "";
+        }else{
+        keyWord = (String) ses.getAttribute("keyWord");   
+        }
+                
+
+        
+      
+
+        Vector<Product> allProduct = productDAO.getProductInPage(pi, vtid, brandId, keyWord, sort);
+        int numberOfPage = productDAO.getNumberOfPage(vtid, brandId, keyWord);
+        ses.setAttribute("numberOfPage", numberOfPage);
+        ses.setAttribute("availableProduct", allProduct);
+        ses.setAttribute("selectedBrand", brandId);
+        ses.setAttribute("vtid", vtid);
+        ses.setAttribute("vtName", vtName);
+        ses.setAttribute("pi", pi);
+        request.getRequestDispatcher("view/productList.jsp").forward(request, response);
         }
     }
 
@@ -69,25 +120,8 @@ public class productList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        int vtid = Integer.parseInt(request.getParameter("vtid"));
-        String vtName = request.getParameter("vtname");
-        HttpSession ses = request.getSession();
-        ses.removeAttribute("keyWord");
-
-        if (vtid == 1) {
-            Vector<Product> allCar = (Vector<Product>) ses.getAttribute("allCar");
-            ses.setAttribute("availableProduct", allCar);
-        }
-        if (vtid == 2) {
-            Vector<Product> allMoto = (Vector<Product>) ses.getAttribute("allMoto");
-            ses.setAttribute("availableProduct", allMoto);
-        }
-        ses.setAttribute("selectedBrand", 0);
-        ses.setAttribute("sortOp", "ManufactureYear desc");
-        request.setAttribute("vtid", vtid);
-        request.setAttribute("vtName", vtName);
-        request.getRequestDispatcher("view/productList.jsp").forward(request, response);
+        processRequest(request, response);
+       
     }
 
     /**

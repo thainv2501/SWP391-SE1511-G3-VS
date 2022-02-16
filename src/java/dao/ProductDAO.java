@@ -73,7 +73,7 @@ public class ProductDAO extends DBContext implements IProductDAO {
                         rs.getString(7),
                         rs.getString(8),
                         rs.getInt(9),
-                        rs.getFloat(10), 
+                        rs.getFloat(10),
                         rs.getFloat(11),
                         rs.getInt(12)
                 )
@@ -260,7 +260,122 @@ public class ProductDAO extends DBContext implements IProductDAO {
         return p;
     }
 
-    public static void main(String[] args) {
+    /* get the number of page base on all product in database
+     */
+    @Override
+    public int getNumberOfPage(int vtid, int brandId, String keyWord) {
+        int pageCount = 0;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            con = getConnection();
+
+            try {
+                System.out.println("Ket noi Thanh cong");
+            } catch (Exception e) {
+                System.out.println("Co loi khi ket noi " + e.getMessage());
+            }
+            String sql = "select COUNT(*) from Product \n"
+                    + "where vehicleTypeId = ? \n";
+            if (brandId != 0) {
+                sql += " and BrandId = " + brandId;
+            }
+            sql += " and ProductName like '%" + keyWord + "%' \n";
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, vtid);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                pageCount = rs.getInt(1) / 9;
+                if (rs.getInt(1) % 9 != 0) {
+                    pageCount++;
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Error");
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return pageCount;
+}
+
+
+
+/* get the Product in page number base on all product in database
+ */
+@Override
+        public Vector<Product> getProductInPage(int index,int vtid, int brandId, String keyWord, String sort) {
+          Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Vector vec = new Vector();
+        try {
+            con = getConnection();
+
+            try {
+                System.out.println("Ket noi Thanh cong");
+            } catch (Exception e) {
+                System.out.println("Co loi khi ket noi " + e.getMessage());
+            }
+            String sql = "select * from Product \n"
+                    + "where vehicleTypeId = ? \n";
+            if (brandId != 0) {
+                sql += " and BrandId = " + brandId;
+            }
+            sql += " and ProductName like '%" + keyWord + "%' \n"
+                    + "order by " + sort 
+                    + " OFFSET ? ROWS \n"
+                    + "FETCH first 9 ROWS ONLY";
+
+            ps = con.prepareStatement(sql);
+
+            ps.setInt(1, vtid);
+            ps.setInt(2, (index-1)*9);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                vec.add(new Product(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getInt(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getInt(9),
+                        rs.getFloat(10),
+                        rs.getFloat(11),
+                        rs.getInt(12)
+                )
+                );
+            }
+        } catch (Exception ex) {
+            System.out.println("Error");
+        } finally {
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            
+
+} catch (SQLException ex) {
+                Logger.getLogger(BrandDAO.class
+.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return vec;
+    }
+
+    
+    
+    
+      public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
 //        Vector<Product> vec = dao.getAllProductsByVehicleTypeId(1);
 //        for (Product brand : vec) {
@@ -270,14 +385,17 @@ public class ProductDAO extends DBContext implements IProductDAO {
 //        for (Product brand : vec2) {
 //            System.out.println(brand);
 //        }
-//        Vector<Product> vec3 = dao.getAllProductsWithCondition(1, 2, "a", "ManufactureYear desc");
-//        for (Product brand : vec3) {
-//            System.out.println(brand);
-//        }
+        Vector<Product> vec3 = dao.getProductInPage(1,1, 2, "a", "ManufactureYear desc");
+        for (Product brand : vec3) {
+            System.out.println(brand);
+        }
         
-        Product p = dao.getProductById(2);
-       
-            System.out.println(p);
+        int count = dao.getNumberOfPage(1, 2, "a");
+          System.out.println(count);
+        
+//        Product p = dao.getProductById(2);
+//       
+//            System.out.println(p);
         
     }
 
