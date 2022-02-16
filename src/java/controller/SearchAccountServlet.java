@@ -5,30 +5,29 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 16-02-2022      1.0                 TUNGNQ           First Implement
+ * 2018-09-10      1.0                 MinhLH           First Implement
  */
 package controller;
 
 import dao.ManageAccountDAO;
 import dao.RoleDAO;
+import dao.impl.IManageAccountDAO;
+import dao.impl.IRoleDAO;
 import entity.Account;
+import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.impl.IManageAccountDAO;
-import dao.impl.IRoleDAO;
-import entity.Role;
-import java.util.List;
 
 /**
- * tìm kiếm tài khoản theo vai trò và id người dùng
- *<p>Bug:</p>
+ *
  * @author nqt26
  */
-public class ManageAccountServlet extends HttpServlet {
+public class SearchAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,10 +46,10 @@ public class ManageAccountServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ManageAccount</title>");
+            out.println("<title>Servlet SearchAccountServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ManageAccount at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SearchAccountServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -68,15 +67,16 @@ public class ManageAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+//        try {
+            int roleId = Integer.parseInt(request.getParameter("roleId").trim());
+            int id = Integer.parseInt(request.getParameter("uid").trim());
             IManageAccountDAO manageaccountdao = new ManageAccountDAO();
-            IRoleDAO iRoleDAO = new RoleDAO();
-            List<Role> listRole = iRoleDAO.getAllRole();
-            request.setAttribute("role", listRole);
-            request.getRequestDispatcher("view/ManageAccount.jsp").forward(request, response);
-        } catch (NullPointerException npt) {
-            response.sendRedirect("login");
-        }
+            Account account = manageaccountdao.searchAccount(roleId, id);
+            request.setAttribute("account", account);
+            request.getRequestDispatcher("manageAccount").forward(request, response);
+//        } catch (NullPointerException npt) {
+//            response.sendRedirect("login");
+//        }
     }
 
     /**

@@ -4,6 +4,7 @@
     Author     : nqt26
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
     <!DOCTYPE html>
@@ -25,6 +26,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
         <style>
+            .title {
+                margin-top: 30px;
+                margin-bottom: 30 px;
+                padding-bottom: 30px;
+            }
             .table-wrapper {
                 width: 1100px;
                 margin: 30px auto;
@@ -174,38 +180,43 @@
         <jsp:include page="navbar.jsp"></jsp:include>
 
             <div class="container-fluid">
-                <div class="row">
+                <div class="row title">
                     <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Transaction</b></a></div>
                     <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Report</b></a></div>
                     <div class="col-sm-3"><a class="link-dark" href="manageAccount">Manage <b>Account</b></a></div>
                     <div class="col-sm-3"><a class="link-dark" href="authorizeSeller">Authorize <b>Seller</b></a></div>
                 </div>
-                <div class="col-md-9">
+                <div class="row">
+                    <form class="navbar-form navbar-right" action="searchAccount" method="get" >
+                        <select name="roleId">
+                            <c:forEach items="${requestScope.role}" var="r">
+                            <option  value="${r.roleId}" > ${r.roleName} </option>
+                        </c:forEach> 
+                    </select>    
+                    <input value="" name="uid" type="text" class="SearchBox" placeholder="Id">
 
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Tài khoản</th>
-                                <th>Vai trò</th>
-                                <th>Tên</th>
-                                <th>Trạng thái</th>
-                                <th>Mục điều chỉnh</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${requestScope.account}" var="a">
+                    <input type="submit" class="SearchButton" />  <i class="fa fa-search"></i>
+                </form>
+
+            </div>
+            <div class="row">
+
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>                          
-                                ${o}
-                            </td>
-                            <td>${o}</td>
-                            <td>${o}</td>
-                            <td>                          
-                                <img src="${o}">
-                            </td>
-                            <td>                          
-                                ${o}
-                            </td>
+                            <th>Tài khoản</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th>Mục điều chỉnh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.account}" var="a">
+                        <tr>
+                            <td>${a.username}</td>
+                            <td>${a.roleId.getRoleName()}</td>
+                            <td>${a.status}    </td>
+                            <td><button type="button" class="btn btn-secondary" ><a href="changeAccountStatus?status=${a.status}">change</a></button></td>
 
                         </tr>
                     </c:forEach>
@@ -213,7 +224,23 @@
                 </table>
             </div>
         </div>
+        <!-- end container part -->
+        <!-- footer  -->
+        <footer class="bg-dark text-light">
+            <div class="tiltle information">
+                <h3  >More information</h3>
+                <button type="button" class="btn btn-outline-secondary"> <a href="#"></a> <i class="bi bi-instagram"></i></button>
+                <button type="button" class="btn btn-outline-success"> <a href="#"></a> <i class="bi bi-instagram"></i></button>
+                <button type="button" class="btn btn-outline-success"> <a href="#"></a> <i class="bi bi-instagram"></i></button>
+                <br>
+            </div>
+            <div class="tiltle address">
+                <h3  >Address</h3>
+                <p>SWP301-SE1511-JS</p>
 
+            </div>
+        </footer>
+        <!-- end footer -->
 
         <!-- Bootstrap core JavaScript -->
         <script src="vendor/jquery/jquery.min.js"></script>

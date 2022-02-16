@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import dao.impl.IManageAccountDAO;
 
 /**
- * tìm account theo vai trò và id, kích hoạt hoặc hủy kích hoạt tài khoản
+ * tìm account theo vai trò và id, chuyển trạng thái tài khoản
  *
  * @author nqt26
  */
@@ -127,5 +127,4 @@ public class ManageAccountDAO extends DBContext implements IManageAccountDAO {
             }
         }
     }
-
 }
