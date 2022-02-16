@@ -214,9 +214,9 @@
                     <c:forEach items="${requestScope.account}" var="a">
                         <tr>
                             <td>${a.username}</td>
-                            <td>${a.roleId.getRoleName()}</td>
-                            <td>${a.status}    </td>
-                            <td><button type="button" class="btn btn-secondary" ><a href="changeAccountStatus?status=${a.status}">change</a></button></td>
+                            <td>${a.getRoleId().getRoleName()}</td>
+                            <td>${a.status}  </td>
+                            <td><button type="button" class="btn btn-secondary" ><a href="changeAccountStatus?status=${a.status}&username=${a.username}">change</a></button></td>
 
                         </tr>
                     </c:forEach>

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * tìm kiếm tài khoản
  * @author nqt26
  */
 public class SearchAccountServlet extends HttpServlet {

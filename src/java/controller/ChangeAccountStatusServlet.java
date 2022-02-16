@@ -9,6 +9,8 @@
  */
 package controller;
 
+import dao.ManageAccountDAO;
+import dao.impl.IManageAccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -60,7 +62,7 @@ public class ChangeAccountStatusServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("view/ManageAccount.jsp").forward(request, response);
     }
 
     /**
@@ -74,7 +76,16 @@ public class ChangeAccountStatusServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String status = request.getParameter("status");
+        String username = request.getParameter("username");
+        IManageAccountDAO manageAccountDAO = new ManageAccountDAO();
+        if (status.equalsIgnoreCase("active")){
+            manageAccountDAO.deactiveAccount(username);
+        }
+        if (status.equalsIgnoreCase("inactive")){
+            manageAccountDAO.activeAccount(username);
+        }
+        response.sendRedirect("manageAccount");
     }
 
     /**

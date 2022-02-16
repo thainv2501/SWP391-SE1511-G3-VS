@@ -28,7 +28,7 @@ import entity.Account;
  * Các phương thức sẽ trả về một đối tượng của lớp
  * <code>javax.servlet.ServletException</code> khi có bất cứ lỗi nào xảy ra trong quá trình
  * truy vấn, cập nhật dữ liệu
- * <p>Bug:</p>
+ * <p>Bug: 404</p>
  *
  * @author nqt26
  */

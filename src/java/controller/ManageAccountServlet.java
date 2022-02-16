@@ -24,7 +24,7 @@ import entity.Role;
 import java.util.List;
 
 /**
- * tìm kiếm tài khoản theo vai trò và id người dùng
+ * hiển thị màn hình tìm kiếm account
  *<p>Bug:</p>
  * @author nqt26
  */
