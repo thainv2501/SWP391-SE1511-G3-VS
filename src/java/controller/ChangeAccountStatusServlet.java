@@ -5,7 +5,7 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 16/02/2022      1.0                 TungNQ           First Implement
  */
 package controller;
 
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Thay đổi status của account
  * @author nqt26
  */
 public class ChangeAccountStatusServlet extends HttpServlet {
@@ -76,8 +76,8 @@ public class ChangeAccountStatusServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String status = request.getParameter("status");
-        String username = request.getParameter("username");
+        String status = request.getParameter("status");// lấy thông tin trạng thái của tài khoản
+        String username = request.getParameter("username"); // lấy username của tài khoản
         IManageAccountDAO manageAccountDAO = new ManageAccountDAO();
         if (status.equalsIgnoreCase("active")){
             manageAccountDAO.deactiveAccount(username);
