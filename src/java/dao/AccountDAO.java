@@ -21,13 +21,25 @@ import java.util.Vector;
  *
  * @author levan
  */
-public class AccountDao extends DBContext {
+/**
+ * Lớp này có các phương thức thực hiện truy vấn hoặc cập nhật dữ liệu từ bảng
+ * Account. Trong các phương thức select or insert của lớp, dữ liệu được chuẩn
+ * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
+ * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
+ * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
+ *
+ * @author levan
+ */
+public class AccountDAO extends DBContext {
 
+    /* get account from database ==> return a account coitain : string ussername, string password, string email, 
+    *String status, int rolid,
+     */
     public Account getAccount(Account a) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Account ac = new Account();
+        Account ac = null;
         try {
             con = getConnection();
 
@@ -39,14 +51,16 @@ public class AccountDao extends DBContext {
             String sql = " select * from Account\n"
                     + "where [username] = ? and [password] = ?";
             ps = con.prepareStatement(sql);
+            ps.setString(1, a.getUsername());
+            ps.setString(2, a.getPassword());
             rs = ps.executeQuery();
             while (rs.next()) {
+                ac = new Account();
                 ac.setUsername(rs.getString(1));
                 ac.setPassword(rs.getString(2));
-                ac.setDisplayname(rs.getString(3));
             }
         } catch (Exception ex) {
-            System.out.println("Error");
+            System.out.println("Error ");
             return null;
         } finally {
             try {
@@ -54,13 +68,15 @@ public class AccountDao extends DBContext {
                 ps.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             }
         }
         return ac;
     }
 
+    /* insert account from database ==> return a string : "oke" or "not oke"
+     */
     public String Insert(Account a) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -72,24 +88,21 @@ public class AccountDao extends DBContext {
             } catch (Exception e) {
                 System.out.println("Co loi khi ket noi " + e.getMessage());
             }
-            String sql = "INSERT INTO [dbo].[Account]\n"
-                    + "           ([username]\n"
-                    + "           ,[password]\n"
-                    + "           ,[email]\n"
-                    + "           ,[displayname]\n"
-                    + "           ,[status])\n"
+            String sql = "INSERT INTO [dbo].[ACCOUNT]\n"
+                    + "           ([Username]\n"
+                    + "           ,[Password]\n"
+                    + "           ,[Status]\n"
+                    + "           ,[Role])\n"
                     + "     VALUES\n"
                     + "           (?\n"
-                    + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?\n"
                     + "           ,?)";
             ps = con.prepareStatement(sql);
             ps.setString(1, a.getUsername());
             ps.setString(2, a.getPassword());
-            ps.setString(3, a.getEmail());
-            ps.setString(4, a.getDisplayname());
-            ps.setString(5, a.getStatus());
+            ps.setString(3, a.getStatus());
+            ps.setInt(4, a.getRoleId().getRoleId());
             ps.executeUpdate();
         } catch (Exception ex) {
             System.out.println("Error");
@@ -99,8 +112,7 @@ public class AccountDao extends DBContext {
                 ps.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(BrandDAO.class.getName()).log(Level.SEVERE, null, ex);
-                return "not oke";
+                Logger.getLogger(AccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return "oke";

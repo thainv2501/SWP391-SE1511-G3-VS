@@ -23,6 +23,16 @@
                 <div class="form-icon">
                     <span><i class="icon icon-user"></i></span>
                 </div>
+                <div>
+                    <div style="float: left; margin-left: 40px; font-size: 20px">
+                        <input type="radio" id="buyer" name="role" value="1" checked="checked">
+                        <label style="color: #1e7e34">Buyer</label>
+                    </div>
+                    <div style="float: right; margin-right: 40px; font-size: 20px">
+                        <input type="radio" id="seller" name="role" value="2">
+                        <label style="color: #1e7e34">Seller</label><br>
+                    </div>
+                </div>
                 <p <c:if test = "${Account == null}">
                         style="display:none;"
                     </c:if>> Your account or password already exists! Please create another</p>
@@ -30,7 +40,7 @@
                     <input type="text" class="form-control item" name="user" placeholder="Username"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.user}"
+                                   value="${Account.username}"
                                </c:when>
                            </c:choose>>
                 </div>
@@ -41,7 +51,7 @@
                     <input type="password" class="form-control item" name="password"  placeholder="Password"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.pass}"
+                                   value="${Account.password}"
                                </c:when>
                            </c:choose>>
                 </div>
@@ -50,28 +60,15 @@
                     <input type="password" class="form-control item" name="repass" placeholder="RePassword"
                            <c:choose>
                                <c:when test="${Account != null}">
-                                   value="${Account.pass}"
-                               </c:when>
-                           </c:choose>>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control item" name="email" placeholder="Email"
-                           <c:choose>
-                               <c:when test="${Account != null}">
-                                   value="${Account.email}"
-                               </c:when>
-                           </c:choose>>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control item" name="dis" placeholder="Displayname"
-                           <c:choose>
-                               <c:when test="${Account != null}">
-                                   value="${Account.displayname}"
+                                   value="${Account.password}"
                                </c:when>
                            </c:choose>>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-block create-account">Create Account</button>
+                </div>
+                <div class="form-group">
+                    <button onclick="window.location.href='./login'" type="button" class="btn btn-block create-account">Login</button>
                 </div>
             </form>
             <div class="social-media">
@@ -86,36 +83,25 @@
         <script src="<c:url value="https://code.jquery.com/jquery-3.2.1.min.js" />"></script>
         <script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js" />"></script>
         <script>
-                function validateform() {
-                    var user = document.getElementsByName("user")[0].value;
-                    var pass = document.getElementsByName("password")[0].value;
-                    var repass = document.getElementsByName("repass")[0].value;
-                    var email = document.getElementsByName("email")[0].value;
-                    var dis = document.getElementsByName("dis")[0].value;
-                    if (user == "" || user == null) {
-                        alert("Username can't be blank");
-                        return false;
-                    }
-                    if (pass.length < 6) {
-                        alert("Password must be at least 6 characters long.");
-                        return false;
-                    }
-                    if (pass != repass) {
-                        alert("Repassword must be same!");
-                        return false;
-                    }
+                            function validateform() {
+                                var user = document.getElementsByName("user")[0].value;
+                                var pass = document.getElementsByName("password")[0].value;
+                                var repass = document.getElementsByName("repass")[0].value;
+                                var btn = document.getElementById("seller");
+                                if (user.trim() == "" || user.trim() == null) {
+                                    alert("Username can't be blank");
+                                    return false;
+                                }
+                                if (pass.trim().length < 6) {
+                                    alert("Password must be at least 6 characters long and not blank");
+                                    return false;
+                                }
+                                if (pass.trim() != repass.trim()) {
+                                    alert("Repassword must be same!");
+                                    return false;
+                                }
+                            }
 
-                    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-                    if (!email.match(regexEmail)) {
-                        alert("email invalid!");
-                        return false;
-                    }
-
-                    if (dis == "" || dis == null) {
-                        alert("Displayname can't be blank");
-                        return false;
-                    }
-                }
         </script>
     </body>
 </html>

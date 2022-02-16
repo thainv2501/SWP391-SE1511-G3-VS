@@ -5,13 +5,14 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 2022-04-15      1.0                 QuanTBA          Add field
  */
 package controller;
 
 import dao.BrandDAO;
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import dao.VehicleTypeDAO;
+import dao.impl.IManageProductDao;
 import entity.Account;
 import entity.Brand;
 import entity.Product;
@@ -69,21 +70,22 @@ public class ManageProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sess = request.getSession();
-       Account a = (Account) sess.getAttribute("acc");
-        int id = a.getRoleId().getRoleId();
-       ManageProductDao manageProductDao = new ManageProductDao();
+  //      HttpSession sess = request.getSession();
+  //     Account a = (Account) sess.getAttribute("acc");
+  //      int id = a.getRoleId().getRoleId();
+        int sid = Integer.parseInt(request.getParameter("sid"));
+       IManageProductDao manageProductDao = new ManageProductDAO();
        BrandDAO brandDao = new BrandDAO();
        VehicleTypeDAO vehicleTypeDao = new VehicleTypeDAO();
        
        List<VehicleType> listvehicleType = vehicleTypeDao.getAllVehicleType();
-       List<Product> listproduct = manageProductDao.getProductBySellerid(id);
+       List<Product> listproduct = manageProductDao.getProductBySellerid(sid);
        List<Brand> listbrand = brandDao.getAllBrand();
         
        request.setAttribute("vehicleType", listvehicleType);
        request.setAttribute("brand", listbrand);
        request.setAttribute("product", listproduct);
-       request.getRequestDispatcher("ManageProduct.jsp").forward(request, response);
+       request.getRequestDispatcher("view/ManageProduct.jsp").forward(request, response);
 
     }
 

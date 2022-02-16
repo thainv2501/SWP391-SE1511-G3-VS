@@ -16,16 +16,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import dao.impl.IManageAccountdao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import dao.impl.IManageAccountDAO;
 
 /**
- * tìm account theo vai trò và id, kích hoạt hoặc hủy kích hoạt tài khoản
+ * tìm account theo vai trò và id, chuyển trạng thái tài khoản
  *
  * @author nqt26
  */
-public class ManageAccountdao extends DBContext implements IManageAccountdao {
+public class ManageAccountDAO extends DBContext implements IManageAccountDAO {
 
     // tìm kiếm tài khoản theo vai trò và id của người dùng
     @Override
@@ -70,7 +70,7 @@ public class ManageAccountdao extends DBContext implements IManageAccountdao {
                 con.close();
                 rs.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ManageAccountdao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManageAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -97,7 +97,7 @@ public class ManageAccountdao extends DBContext implements IManageAccountdao {
                 ps.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ManageAccountdao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManageAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -123,9 +123,8 @@ public class ManageAccountdao extends DBContext implements IManageAccountdao {
                 ps.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(ManageAccountdao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ManageAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-
 }

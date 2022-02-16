@@ -1,12 +1,17 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright(C) 2021, group 3 SE1511JS
+ * T.NET:
+ *  Vehicle Store
+ *
+ * Record of change:
+ * DATE            Version             AUTHOR           DESCRIPTION
+ * 2021-02-09      1.0                 levan           Add Field
  */
 package controller;
 
-import dao.AccountDao;
+import dao.AccountDAO;
 import entity.Account;
+import entity.Role;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -15,11 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Lớp này có các phương thức thực hiện thêm dữ liệu từ bảng
- * Account. Trong các phương thức insert của lớp, dữ liệu được chuẩn
- * hóa (loại bỏ dấu cách ở hai đầu) trước khi được cập nhật vào cơ sở dữ liệu
- * Các phương thức sẽ trả về một đối tượng của lớp java.lang.Exception khi có
- * bất cứ lỗi nào xảy ra trong quá trình truy vấn, cập nhật dữ liệu Bugs :
+ * Lớp này có các phương thức thực hiện truy vấn dữ liệu từ bảng
+ * Account.
+ * 
  *
  * @author levan
  */
@@ -72,15 +75,15 @@ public class register extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("password");
-        String email = request.getParameter("email");
-        String dis = request.getParameter("dis");
+        int rol = Integer.parseInt(request.getParameter("role"));
+//        response.getWriter().print(rol);
         Account a = new Account();
         a.setUsername(user);
         a.setPassword(pass);
-        a.setEmail(email);
-        a.setDisplayname(dis);
-        a.setStatus("active");
-        AccountDao adb = new AccountDao();
+        a.setRoleId(new Role(rol));
+        if (rol == 1) a.setStatus("active");
+                else  a.setStatus("inactive");
+        AccountDAO adb = new AccountDAO();
         String mess = adb.Insert(a);
         String contextPath = request.getContextPath();
         if (mess.equalsIgnoreCase("oke")){

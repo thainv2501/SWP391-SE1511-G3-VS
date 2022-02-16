@@ -5,26 +5,24 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2022-02-14      1.0                 QuanTBA          Add Field
+ * 16/02/2022      1.0                 TungNQ           First Implement
  */
 package controller;
 
-import dao.ManageProductDAO;
-import entity.Account;
+import dao.ManageAccountDAO;
+import dao.impl.IManageAccountDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- *Thêm thông tin 1 sản phẩm mới vào trong database đồng thời hiển thị trong
- * danh sách sản phẩm của người bán
- * @author QuanTBA
+ * Thay đổi status của account
+ * @author nqt26
  */
-public class AddProduct extends HttpServlet {
+public class ChangeAccountStatusServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,10 +41,10 @@ public class AddProduct extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddProduct</title>");            
+            out.println("<title>Servlet ChangeAccountStatusServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddProduct at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ChangeAccountStatusServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,7 +62,7 @@ public class AddProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("view/ManageAccount.jsp").forward(request, response);
     }
 
     /**
@@ -78,23 +76,16 @@ public class AddProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("productname");
-        String image = request.getParameter("img");
-        float price = Float.parseFloat( request.getParameter("price"));
-        String description = request.getParameter("description");
-        int brand =Integer.parseInt( request.getParameter("brand"));
-        int vehicletype =Integer.parseInt( request.getParameter("type"));
-        float discount = Float.parseFloat( request.getParameter("discount"));
-        String ManufactureYear = request.getParameter("Myear");
-        String MadeIn = request.getParameter("madeIn");
-        int quantity = Integer.parseInt( request.getParameter("quantity"));
-//        HttpSession sess = request.getSession();
-  //     Account a = (Account) sess.getAttribute("acc");
- //      int sid = a.getRoleId().getRoleId();
-
-       ManageProductDAO manageProductDao = new ManageProductDAO();
-       manageProductDao.AddProduct(vehicletype, name,brand, MadeIn, ManufactureYear, description, image, quantity, price, discount, 2);
-
+        String status = request.getParameter("status");// lấy thông tin trạng thái của tài khoản
+        String username = request.getParameter("username"); // lấy username của tài khoản
+        IManageAccountDAO manageAccountDAO = new ManageAccountDAO();
+        if (status.equalsIgnoreCase("active")){
+            manageAccountDAO.deactiveAccount(username);
+        }
+        if (status.equalsIgnoreCase("inactive")){
+            manageAccountDAO.activeAccount(username);
+        }
+        response.sendRedirect("manageAccount");
     }
 
     /**

@@ -5,12 +5,12 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 TUNGNQ           First Implement
+ * 16-02-2022      1.0                 TUNGNQ           First Implement
  */
 package controller;
 
-import dao.ManageAccountdao;
-import dao.impl.IManageAccountdao;
+import dao.ManageAccountDAO;
+import dao.RoleDAO;
 import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,9 +18,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import dao.impl.IManageAccountDAO;
+import dao.impl.IRoleDAO;
+import entity.Role;
+import java.util.List;
 
 /**
- *
+ * hiển thị màn hình tìm kiếm account
+ *<p>Bug:</p>
  * @author nqt26
  */
 public class ManageAccountServlet extends HttpServlet {
@@ -63,7 +68,15 @@ public class ManageAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            IManageAccountDAO manageaccountdao = new ManageAccountDAO();
+            IRoleDAO iRoleDAO = new RoleDAO();
+            List<Role> listRole = iRoleDAO.getAllRole();
+            request.setAttribute("role", listRole);
+            request.getRequestDispatcher("view/ManageAccount.jsp").forward(request, response);
+        } catch (NullPointerException npt) {
+            response.sendRedirect("login");
+        }
     }
 
     /**
@@ -77,10 +90,7 @@ public class ManageAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int roleId = Integer.parseInt(request.getParameter("roleId"));
-        int id = Integer.parseInt(request.getParameter("id"));
-        IManageAccountdao manageacountdao = new ManageAccountdao();
-        Account account = manageacountdao.searchAccount(roleId, id);
+        processRequest(request, response);
     }
 
     /**

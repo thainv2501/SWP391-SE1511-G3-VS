@@ -15,50 +15,73 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>Home Page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <script src="main.js"></script>
+        <!--css link -->
         <link rel="stylesheet" href="css/style.css" />
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-            crossorigin="anonymous"
-            />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous"
+              />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
     </head>
     <body>
         <!-- navbar dung chung -->
         <jsp:include page="navbar.jsp"></jsp:include>
-        <div class="container-fluid">
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Tên</th>
-                        <th>Mô tả</th>
-                        <th>Địa chỉ</th>
-                        <th>Gmail</th>
-                        <th>Số điện thoại </th>
-                        <th>Mục điều chỉnh</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${requestScope.seller}" var="o">
-                    <tr>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                        <td>${o}</td>
-                    </tr>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Transaction</b></a></div>
+                    <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Report</b></a></div>
+                    <div class="col-sm-3"><a class="link-dark" href="#">Manage <b>Account</b></a></div>
+                    <div class="col-sm-3"><a class="link-dark" href="#">Authorize <b>Seller</b></a></div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Địa chỉ</th>
+                            <th>Gmail</th>
+                            <th>Số điện thoại </th>
+                            <th>Mục điều chỉnh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${requestScope.seller}" var="s">
+                        <tr>
+                            <td>${s.sellerName}</td>
+                            <td>${s.description}</td>
+                            <td>${s.address}</td>
+                            <td>${s.gmail}</td>
+                            <td>${s.phone}</td>
+                            <td><button type="button" class="btn btn-secondary" ><a href="authorizeSeller?id=${s.sellerId}">Accept</a></button>&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="btn btn-secondary" ><a href="deleteSellerAccount?username=${s.username.getusername()}">Deny</a></button></td>
+                        </tr>
                     </c:forEach>
                 </tbody>
             </table>
-</div>
-<!-- script link -->
-<script src="myjs.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        </div>
+        <!-- end container part -->
+        <!-- footer  -->
+        <footer class="bg-dark text-light">
+            <div class="tiltle information">
+                <h3  >More information</h3>
+                <button type="button" class="btn btn-outline-secondary"> <a href="#"></a> <i class="bi bi-instagram"></i></button>
+                <button type="button" class="btn btn-outline-success"> <a href="#"></a> <i class="bi bi-instagram"></i></button>
+                <button type="button" class="btn btn-outline-success"> <a href="#"></a> <i class="bi bi-instagram"></i></button>
+                <br>
+            </div>
+            <div class="tiltle address">
+                <h3  >Address</h3>
+                <p>SWP301-SE1511-JS</p>
+
+            </div>
+        </footer>
+        <!-- end footer -->
+        <!-- script link -->
+        <script src="main.js"></script>
+        <script src="myjs.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

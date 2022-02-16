@@ -5,11 +5,11 @@
  *
  * Record of change:
  * DATE            Version             AUTHOR           DESCRIPTION
- * 2018-09-10      1.0                 MinhLH           First Implement
+ * 2022-02-15      1.0                 QuanTBA          Add Field
  */
 package controller;
 
-import dao.ManageProductDao;
+import dao.ManageProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -89,11 +89,11 @@ public class EditProduct extends HttpServlet {
         String type = request.getParameter("type");
         String manufactureyear = request.getParameter("Myear");
         String madein = request.getParameter("MadeIn");
-        String productid = request.getParameter("productid");
+         int pid = Integer.parseInt(request.getParameter("productid"));
         String quantity = request.getParameter("quantity");
         
-        ManageProductDao manageProductDao = new ManageProductDao();
-        manageProductDao.EditProduct(brand, type, name,madein , manufactureyear, description, image, quantity, price, discount, productid);
+        ManageProductDAO manageProductDao = new ManageProductDAO();
+        manageProductDao.EditProduct(brand, type, name,madein , manufactureyear, description, image, quantity, price, discount, pid);
         response.sendRedirect("manageproduct");
     }
 

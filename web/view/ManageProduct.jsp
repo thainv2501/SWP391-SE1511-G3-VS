@@ -151,9 +151,11 @@ header img{
 .row a{
     font-size: 30px;
 }
-.row1 select{
+.row0 select{
     width: 100px;
     height: 30px;
+    margin-bottom: -10px;
+    margin-top: 10px;
 }
     </style>
 <!--
@@ -197,26 +199,29 @@ header img{
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-4"><a class="link-dark" href="#">Manage <b>Products</b></a></div>
+                    <div class="col-sm-4"><a class="link-dark" href="manageproduct">Manage <b>Products</b></a></div>
                     <div class="col-sm-4"><a class="link-dark" href="#">Report <b>List</b></a></div>
                     <div class="col-sm-4"><a class="link-dark" href="#">Pre-order <b>Customers</b></a></div>
                 </div>
-                <div class="row1">
-                    <form class="navbar-form navbar-right" action="search" method="get" >
-                        
-                     <select name="brandid" onchange="location = this.value;">
+                <div class = "row0">
+                 <select name="brandid" onchange="location = this.value;">
                 <option value="0">Brand</option>
                 <c:forEach items="${requestScope.brand}" var="o">
                     <option  value="searchbrandforseller?brandid=${o.id}"> ${o.name} </option>
                 </c:forEach> </select>
+                </div>
+                <div class="row1">
+                    <form class="navbar-form navbar-right" action="searchproductforseller" method="get" >
                         
-                <input value="${name}" name="productname" type="text" class="SearchBox" placeholder="Product Name"></li>
+                    
+                        
+                <input value="${prodname}" name="productname" type="text" class="SearchBox" placeholder="Product Name"></li>
           
                <input type="submit" class="SearchButton" value="Search"\>  <i class="fa fa-search"></i></li>
           
        
     </form>
-            <a href="#addBook" type="button" class="btn btn-info add-new" data-toggle="modal"><i class="fa fa-plus"></i> Add New</a>
+            <a href="#addProduct" type="button" class="btn btn-info add-new" data-toggle="modal"><i class="fa fa-plus"></i> Add New</a>
                     </div>
             </div>
             <table class="table table-bordered">
@@ -258,7 +263,7 @@ header img{
 </div>  
     
                 
-<div id="addBook" class="modal fade">
+<div id="addProduct" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form action="addproduct" method="post">

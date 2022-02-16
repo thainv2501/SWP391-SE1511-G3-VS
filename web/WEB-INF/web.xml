@@ -52,6 +52,22 @@
         <servlet-name>productDetail</servlet-name>
         <servlet-class>controller.productDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteSellerAccountServlet</servlet-name>
+        <servlet-class>controller.DeleteSellerAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProductforSeller</servlet-name>
+        <servlet-class>controller.SearchProductforSeller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchAccountServlet</servlet-name>
+        <servlet-class>controller.SearchAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeAccountStatusServlet</servlet-name>
+        <servlet-class>controller.ChangeAccountStatusServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homePage</servlet-name>
         <url-pattern>/homePage</url-pattern>
@@ -103,6 +119,22 @@
     <servlet-mapping>
         <servlet-name>productDetail</servlet-name>
         <url-pattern>/productDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSellerAccountServlet</servlet-name>
+        <url-pattern>/deleteSellerAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductforSeller</servlet-name>
+        <url-pattern>/searchproductforseller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchAccountServlet</servlet-name>
+        <url-pattern>/searchAccount</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeAccountStatusServlet</servlet-name>
+        <url-pattern>/changeAccountStatus</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

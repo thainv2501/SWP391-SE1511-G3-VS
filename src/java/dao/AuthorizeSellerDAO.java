@@ -19,9 +19,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import dao.impl.IAuthorizeSellerdao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import dao.impl.IAuthorizeSellerDAO;
 
 /**
  * Hiển thị danh sách tài khoản người bán chưa được chấp thuận Xóa thông tin
@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  *
  * @author nqt26
  */
-public class AuthorizeSellerdao extends DBContext implements IAuthorizeSellerdao {
+public class AuthorizeSellerDAO extends DBContext implements IAuthorizeSellerDAO {
 
     // lấy danh sách người bán chưa được cấp quyền
     @Override
@@ -64,7 +64,7 @@ public class AuthorizeSellerdao extends DBContext implements IAuthorizeSellerdao
                 con.close();
                 rs.close();
             } catch (SQLException ex) {
-                Logger.getLogger(AuthorizeSellerdao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AuthorizeSellerDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return listSeller;
@@ -100,7 +100,7 @@ public class AuthorizeSellerdao extends DBContext implements IAuthorizeSellerdao
                 ps2.close();
                 con.close();
             } catch (SQLException ex) {
-                Logger.getLogger(AuthorizeSellerdao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AuthorizeSellerDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
