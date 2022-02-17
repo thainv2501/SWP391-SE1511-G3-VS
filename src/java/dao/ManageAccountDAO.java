@@ -19,6 +19,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import dao.impl.IManageAccountDAO;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * tìm account theo vai trò và id, chuyển trạng thái tài khoản
@@ -29,7 +31,8 @@ public class ManageAccountDAO extends DBContext implements IManageAccountDAO {
 
     // tìm kiếm tài khoản theo vai trò và id của người dùng
     @Override
-    public Account searchAccount(int roleId, int id) {
+    public List<Account> searchAccount(int roleId, int id) {
+        List<Account> listAccount = new ArrayList<>();
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -58,9 +61,10 @@ public class ManageAccountDAO extends DBContext implements IManageAccountDAO {
             ps.setInt(1, roleId);
             ps.setInt(2, id);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                return new Account(rs.getString("username"), rs.getString("password"), rs.getString("status"),
+            while (rs.next()) {
+                Account account =  new Account(rs.getString("username"), rs.getString("password"), rs.getString("status"),
                         new Role(rs.getInt("roleId"), rs.getString("roleName")));
+                listAccount.add(account);
             }
         } catch (SQLException e) {
             System.out.println("" + e);
@@ -73,7 +77,7 @@ public class ManageAccountDAO extends DBContext implements IManageAccountDAO {
                 Logger.getLogger(ManageAccountDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return null;
+        return listAccount;
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.List;
  * @author nqt26
  */
 public interface IManageAccountDAO {
-    public Account searchAccount(int roleId,int id);
+    public List<Account> searchAccount(int roleId,int id);
     public void activeAccount(String username);
     public void deactiveAccount(String username);
 }

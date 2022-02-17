@@ -71,7 +71,7 @@ public class SearchAccountServlet extends HttpServlet {
             int roleId = Integer.parseInt(request.getParameter("roleId").trim());
             int id = Integer.parseInt(request.getParameter("uid").trim());
             IManageAccountDAO manageaccountdao = new ManageAccountDAO();
-            Account account = manageaccountdao.searchAccount(roleId, id);
+            List<Account> account = manageaccountdao.searchAccount(roleId, id);
             request.setAttribute("account", account);
             request.getRequestDispatcher("manageAccount").forward(request, response);
 //        } catch (NullPointerException npt) {
